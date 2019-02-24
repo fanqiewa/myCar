@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/fanqiewa/myCar/issues"
   },
-  "homepage": "https://github.com/fanqiewa/myCar#readme"
+  "homepage": "https://github.com/fanqiewa/myCar#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "multer": "^1.4.1",
+    "mysql": "^2.16.0"
+  }
 }

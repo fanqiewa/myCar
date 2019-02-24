@@ -1,0 +1,88 @@
+.header {
+    background-color: #23262E;
+    width:100%;
+    color:white;
+    /*height: 60px;*/
+}
+ .row {
+    margin-right:0;
+     margin-left: 0;
+}
+.header .header_left a {
+    margin-left: 15px;
+    display: inline-block;
+    width: 40%;
+}
+.header .header_left img{
+    height: 60px;
+    width: 100%;
+}
+.header .header_left span {
+    font-size:20px;
+}
+
+.header .header_left .list {
+    background-color: #1688d3;
+    width: 33px;
+    height: 33px;
+    margin: 15px 15px 0 0;
+    text-align: center;
+    padding: 5px 5px;
+    color: #fff;
+    display: inline-block;
+    float: right;
+}
+.header .header_left .list span {
+    color:white;
+    font-size:18px;
+}
+
+
+
+/*左侧*/
+.box_wrapper .box_left {
+    background-color: #393D49;
+    height:100vh;
+}
+.box_wrapper .box_left .user_photo {
+    padding-top: 30px;
+    width:100%;
+    text-align: center;
+    color:white;
+}
+.box_wrapper .box_left .user_photo img {
+    width: 50%;
+    border-radius:50%;
+}
+
+.list_nav .list_one a li {
+    height: 45px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    line-height: 45px;
+    color: white;
+    padding-left:15px;
+}
+.list_nav .list_one a:hover {
+    text-decoration: none;
+}
+.list_nav .list_one a .active {
+    background-color: #1b6d85;
+}
+.list_nav .list_one a li:hover {
+    background-color: #96a3a71c;
+}
+.box_right {
+    border-top: 5px solid #1688d3;
+    border-left: 2px solid #1688d3;
+    height: 100vh;
+}
+input {
+    height: 35px !important;
+}
+.submitBtn {
+    width: 100px;
+    height: 50px;
+}
