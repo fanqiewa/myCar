@@ -22,6 +22,11 @@ function queryNewsByViews(size,success){
     newsDao.queryNewsByViews(size,success);
 }
 
+//查询全部新闻
+function queryAll(success) {
+    newsDao.queryAll(success);
+}
+
 //更新浏览次数
 function addViews(id,success) {
     newsDao.addViews(id,success);
@@ -33,5 +38,6 @@ module.exports = {
     "queryAllNews" : queryAllNews,
     "queryNewsById" : queryNewsById,
     "queryNewsByViews" : queryNewsByViews,
-    "addViews" : addViews
+    "addViews" : addViews,
+    "queryAll" : queryAll
 }

@@ -101,19 +101,6 @@ div{
     padding-left:5px;
     cursor: pointer;
 }
-
-/*footer*/
-.footer {
-    width: 100%;
-    text-align: center;
-    background: #232730;
-    padding: 1.2em 0;
-    border-top: 3px solid #1688d3;
-
-}
-.news_box {
-    padding-top: 20px;
-}
 .news_box .news_category {
     border-top: 1px solid #e5e5e6;
     padding-top: 18px;
@@ -133,4 +120,17 @@ div{
     float:right;
     color: #EF9394;
 }
+/*footer*/
+.footer {
+    width: 100%;
+    text-align: center;
+    background: #232730;
+    padding: 1.2em 0;
+    border-top: 3px solid #1688d3;
+    color:white;
+}
+.news_box {
+    padding-top: 20px;
+}
+
 

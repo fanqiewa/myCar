@@ -60,6 +60,19 @@ function queryNewsByViews(requset,response){
     })
 }
 
+//查询全部新闻
+function queryAll(request,response) {
+    newsService.queryAll(function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","查询成功",result));
+        response.end();
+    })
+
+};
+
+path.set("/queryAll",queryAll);
+
+
 path.set("/queryNewsByViews",queryNewsByViews);
 
 module.exports.path = path;

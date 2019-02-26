@@ -27,7 +27,24 @@ function queryAllNews(success) {
         if(error == null) {
             success(result);
         } else {
-            alert("上传失败")
+            alert("查询失败")
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+//查询全部新闻
+function queryAll(success) {
+    var querySql = "select * from news order by id desc";
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            alert("查询失败")
             console.log(error)
         }
     })
@@ -88,3 +105,4 @@ module.exports.queryAllNews = queryAllNews;
 module.exports.queryNewsById = queryNewsById;
 module.exports.queryNewsByViews =queryNewsByViews;
 module.exports.addViews = addViews;
+module.exports.queryAll = queryAll;

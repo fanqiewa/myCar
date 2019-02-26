@@ -32,6 +32,12 @@ app.get("/queryAllNews",loader.get("/queryAllNews"));
 app.get("/queryNewsById",loader.get("/queryNewsById"));
 //根据热度查询新闻
 app.get("/queryNewsByViews",loader.get("/queryNewsByViews"));
+//查询全部新闻
+app.get("/queryAll",loader.get("/queryAll"));
+
+
+//添加评论
+app.post("/addSuggest",loader.get("/addSuggest"));
 
 
 app.listen(globalConfig.port,function () {

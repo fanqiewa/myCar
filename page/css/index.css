@@ -354,15 +354,13 @@ div{
 
 .services-list ul li {
     display: inline-block;
-    padding:1em 1.5em;
+    padding:1.5em 4.5em;
 }
 .services-list ul li .services_rotate {
-    border:5px solid #fff;
-    padding: 10px;
-    border-radius: 50%;
+    border:1px solid #fff;
+    padding: 40px;
     transition: rotate_one 1s linear;
 }
-
 @keyframes rotate_one {
     form {
         transform: rotateZ(0deg);
@@ -398,10 +396,12 @@ div{
 
 .services-list ul li a label {
     display: block;
-    font-weight: 300;
+    font-weight: 400;
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: 1.2em;
     margin: .5em 0 0;
+    color:black;
+    cursor:pointer;
 }
 
 
@@ -682,6 +682,7 @@ div{
     background: #232730;
     padding: 1.2em 0;
     border-top: 3px solid #1688d3;
+    color:white;
 }
 
 /* This is news section */
@@ -740,6 +741,10 @@ div{
     font-weight: 600;
     font-size: 1.3em;
     color: #fff;
+}
+.post_head_left h4 a:hover {
+    text-decoration: underline;
+    color:red;
 }
 .post_head_left_black h4 a {
     font-weight: 600;
