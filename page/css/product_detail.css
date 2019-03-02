@@ -1,0 +1,168 @@
+#welcome {
+    padding: 3em 0;
+}
+#welcome .wel_left h3{
+    font-size: 2em;
+    color: #333;
+    font-family: 'Ubuntu-Medium';
+}
+#welcome .wel_left span {
+    background: #333;
+    display: block;
+    height: 2px;
+    width: 18%;
+    margin-top: 1em;
+}
+#welcome .wel_left h4 {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 500;
+    margin: 2em 0;
+    font-family: 'Ubuntu-Medium';
+}
+#welcome .wel_left .text {
+    font-size: 1.2em;
+    line-height: 1.9em;
+    margin-top: 1em;
+    color: #7B7B7B;
+    overflow: hidden;
+}
+#welcome .wel_right h2 {
+    color: #333;
+    font-size: 2em;
+    font-family: 'Ubuntu-Medium';
+}
+
+#welcome .wel_right img {
+    margin: 2em 0 1em 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+#welcome .wel_right h3 {
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 1em;
+    font-family: 'Ubuntu-Medium';
+}
+
+#welcome .wel_left a {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 400;
+    background: #F66C53;
+    text-decoration: none;
+    padding: 0.8em 2em;
+    margin-top: 2em;
+    display: inline-block;
+}
+
+/*facade*/
+
+#facade {
+    background-color: #f3f5f6;
+    padding: 2em 0 3em 0;
+}
+#facade h3 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Ubuntu-Medium';
+}
+#facade .line {
+    background: #333;
+    display: block;
+    height: 2px;
+    width: 10%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+#facade .facade_img {
+    padding-bottom: 15px;
+}
+#facade .facade_img img {
+    width: 100%;
+    border-radius: 5px;
+}
+.facade_text {
+    text-align: center;
+    color:black;
+}
+.facade_text h4 {
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+/*内饰*/
+
+
+#decorate {
+    padding: 6em 0 3em 0;
+}
+#decorate h3 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Ubuntu-Medium';
+}
+#decorate .line {
+    background: #333;
+    display: block;
+    height: 2px;
+    width: 10%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+#decorate .decorate_img {
+    padding-bottom: 15px;
+}
+#decorate .decorate_img img {
+    width: 100%;
+    border-radius: 5px;
+}
+.decorate_text {
+    text-align: center;
+    color:black;
+}
+.decorate_text h4 {
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+
+/*科技*/
+#technology {
+    background-color: #f3f5f6;
+    padding: 2em 0 3em 0;
+}
+#technology h3 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Ubuntu-Medium';
+}
+#technology .line {
+    background: #333;
+    display: block;
+    height: 2px;
+    width: 10%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+#technology .technology_img {
+    padding-bottom: 15px;
+}
+#technology .technology_img img {
+    width: 100%;
+    border-radius: 5px;
+}
+.technology_text {
+    text-align: center;
+    color:black;
+}
+.technology_text h4 {
+    margin: 15px 0;
+    font-size: 18px;
+}

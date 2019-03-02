@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="back-css/back_base.css">
-    <link rel="stylesheet" href="back-css/back_addNews.css">
+    <link rel="stylesheet" href="back-css/back_base_right.css">
     <title>千行后台管理</title>
 </head>
 <body>
@@ -54,7 +54,8 @@
                             <a href="back_newsList.html"><li>新闻列表</li></a>
                             <a href="back_addNews.html"><li class="active">添加新闻</li></a>
                             <a href=""><li>产品列表</li></a>
-                            <a href=""><li>添加产品</li></a>
+                            <a href="back_addProduct.html"><li>添加产品</li></a>
+                            <a href="back_addFacade.html"><li>添加产品外观</li></a>
                             <a href=""><li>用户管理</li></a>
                             <a href=""><li>其他</li></a>
                         </ul>
@@ -189,7 +190,7 @@
             var author = $("#news_author").val();
             var file = document.getElementById("news_image").files[0];
             var content = $("#editor").html();
-
+            // console.log(content)
             var changeContent = content.replace(/<img[^>]*>/g,"");
             var form = new FormData();
             var imageType = /^image\//;
@@ -207,8 +208,10 @@
                 return;
             }
             form.append("file",file);
+            form.append("content",content);
             $.ajax({
-                url:"/addNews?title=" + title + "&author=" + author + "&content=" + changeContent,
+                // url:"/addNews?title=" + title + "&author=" + author + "&content=" + content,
+                url:"/addNews?title=" + title + "&author=" + author,
                 type:"POST",
                 data:form,
                 processData:false,

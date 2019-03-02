@@ -9,11 +9,13 @@ var path = new Map();
 function addNews(request,response) {
     var params = url.parse(request.url,true).query;
     var imagePath = request.file.path.substring(5);
-    newsService.insertNews(params.title,params.author,params.content,imagePath,timeUtil.getNow(),timeUtil.getNow(),function (result) {
-        response.writeHead(200);
-        response.write(respUtil.writeResult("success","添加成功","null"));
-        response.end();
-    })
+    // console.log(request.form)
+        newsService.insertNews(params.title,params.author,request.body.content.toString(),imagePath,timeUtil.getNow(),timeUtil.getNow(),function (result) {
+            response.writeHead(200);
+            response.write(respUtil.writeResult("success","添加成功","null"));
+            response.end();
+        })
+
 }
 
 path.set("/addNews",addNews);

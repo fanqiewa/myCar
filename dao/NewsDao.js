@@ -10,7 +10,6 @@ function insertNews(title,author,content,image,ctime,utime,success) {
         if(error == null) {
             success(result);
         } else {
-            alert("上传失败")
             console.log(error)
         }
     })
