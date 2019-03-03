@@ -1,4 +1,4 @@
-(function(){
+(function($){
     var flag = true;
     $(".btn-menu").on("click",function(){
             if(flag){
@@ -57,4 +57,7 @@
                 }
             })
 
-})()
+
+
+
+})($)

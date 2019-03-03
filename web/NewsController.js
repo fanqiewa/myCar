@@ -38,8 +38,8 @@ function queryAllNews(request,response) {
 path.set("/queryAllNews",queryAllNews);
 
 //根据ID查询新闻
-function queryNewsById(requset,response) {
-    var params = url.parse(requset.url,true).query;
+function queryNewsById(request,response) {
+    var params = url.parse(request.url,true).query;
     newsService.queryNewsById(parseInt(params.bid),function (result) {
         response.writeHead(200);
         response.write(respUtil.writeResult("success","查询成功",result));
@@ -53,14 +53,15 @@ function queryNewsById(requset,response) {
 path.set("/queryNewsById",queryNewsById);
 
 //按热度查询新闻
-function queryNewsByViews(requset,response){
-    var params = url.parse(requset.url,true).query;
+function queryNewsByViews(request,response){
+    var params = url.parse(request.url,true).query;
     newsService.queryNewsByViews(parseInt(params.size),function (result) {
         response.writeHead(200);
         response.write(respUtil.writeResult("success","查询成功",result));
         response.end();
     })
 }
+path.set("/queryNewsByViews",queryNewsByViews);
 
 //查询全部新闻
 function queryAll(request,response) {
@@ -75,6 +76,19 @@ function queryAll(request,response) {
 path.set("/queryAll",queryAll);
 
 
-path.set("/queryNewsByViews",queryNewsByViews);
+//模糊查询
+function queryNewsByBlur(request,response) {
+    var params = url.parse(request.url,true).query;
+    newsService.queryNewsByBlur(params.text,function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","查询成功",result));
+        response.end();
+    })
+
+};
+
+path.set("/queryNewsByBlur",queryNewsByBlur);
+
+
 
 module.exports.path = path;

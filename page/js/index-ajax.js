@@ -3,6 +3,8 @@
         init: function () {
             this.news();
             this.suggest();
+            this.product();
+            this.category();
         },
         news: function () {
             var url = "/queryAllNews";
@@ -191,7 +193,98 @@
                 }
 
             }
+        },
+        product : function() {
+            var url = "/queryAllProduct";
+            $.ajax({
+                type:"get",
+                url:url,
+                success: function (data) {
+                    var dataList = JSON.parse(data).data;
+                    renderProduct(dataList);
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        },
+        category: function() {
+            var url = "/queryAllCategory";
+            $.ajax({
+                url:url,
+                type: "get",
+                success: function (data) {
+                    renderCategory(JSON.parse(data).data)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+            function renderCategory(dataList) {
+                var str = "";
+                var len = dataList.length;
+                for( var i = 0; i < len; i ++) {
+                    str += "<li>/<span>"+ dataList[i].category_name +"</span></li>\n"
+                }
+                $(".product_list").append(str);
+            }
         }
     }
-    list.init()
+    list.init();
+
+    //改变product连接样式
+    var oSpan =  $(".product_list");
+    oSpan.on("click","li",function (e) {
+        oSpan.find("li span").removeClass("active");
+        $(this).find("span").addClass("active");
+        var spanText = $(e.target).text();
+        if(spanText == "最新产品") {
+            $(".product_content_wrapper").html("");
+            list.product();
+        } else {
+            $(".product_content_wrapper").html("");
+            queryProductByCategory(spanText);
+        }
+    })
+
+    //根据条件渲染产品
+    function queryProductByCategory(category_name) {
+        $.ajax({
+            url: "/queryProductByCategory?category_name=" + category_name,
+            type: "get",
+            success: function(data) {
+                renderProduct(JSON.parse(data).data)
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    }
+    //根据数据渲染产品
+    function renderProduct(dataList){
+        var str = "";
+        for(var i = 0; i < 3; i ++){
+            if(dataList[i] == undefined) {
+                break;
+            } else {
+                str += "<div class=\"col-md-4 col-xs-6 product_box\">\n" +
+                    "                        <div class=\"product_box_wrap\">\n" +
+                    "                            <div class=\"product_img\">\n" +
+                    "                                <img src=\"./"+ dataList[i].product_image +"\" alt=\"\">\n" +
+                    "                                <span class=\"bottom-to-top\">\n" +
+                    "                                    <h1>"+ dataList[i].product_describe +"</h1>\n" +
+                    "                                </span>\n" +
+                    "                            </div>\n" +
+                    "                            <div class=\"product_describe\">\n" +
+                    "                                <h4 class=\"product_title\">"+ dataList[i].category_name +"</h4>\n" +
+                    "                                <p>"+ dataList[i].product_version +"</p>\n" +
+                    "                                <a href=\"./frontstage/product_detail.html?id="+ dataList[i].id +"\" target='_blank'>Read more</a>\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "                    </div>"
+            }
+        }
+        $(".product_content_wrapper").append(str);
+    }
+
 }($))

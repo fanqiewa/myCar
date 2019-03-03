@@ -99,9 +99,28 @@ function addViews(id,success) {
     connection.end();
 }
 
+//模糊查询
+
+function queryNewsByBlur(text,success){
+    var querySql = "select * from news where news_title like '%"+ text +"%'";
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+
+}
+
 module.exports.insertNews = insertNews;
 module.exports.queryAllNews = queryAllNews;
 module.exports.queryNewsById = queryNewsById;
 module.exports.queryNewsByViews =queryNewsByViews;
 module.exports.addViews = addViews;
 module.exports.queryAll = queryAll;
+module.exports.queryNewsByBlur = queryNewsByBlur;

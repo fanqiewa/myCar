@@ -33,11 +33,17 @@ function addViews(id,success) {
 }
 
 
+//模糊查询
+function queryNewsByBlur(text,success){
+    newsDao.queryNewsByBlur(text,success)
+}
+
 module.exports = {
     "insertNews": insertNews,
     "queryAllNews" : queryAllNews,
     "queryNewsById" : queryNewsById,
     "queryNewsByViews" : queryNewsByViews,
     "addViews" : addViews,
-    "queryAll" : queryAll
+    "queryAll" : queryAll,
+    "queryNewsByBlur" : queryNewsByBlur
 }

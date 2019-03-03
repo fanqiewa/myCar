@@ -10,11 +10,17 @@
     <link rel="stylesheet" href="../css/news_index.css">
 </head>
 <body>
-    <header class="header"></header>
-    <nav class="navigation">
+    <header class="top"></header>
+    <nav class="navigation header">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 nav_left"><h2>新闻中心</h2></div>
+                <div class="col-md-7 nav_left"><h2>新闻中心</h2></div>
+                <div class="col-md-3">
+                    <div class="news_input">
+                        <input type="text" class="input_text">
+                        <span class="glyphicon glyphicon-search search_btn"></span>
+                    </div>
+                </div>
                 <div class="col-md-2 nav_right">
                     <ul>
                         <li><a href="javascript:;" >新闻中心</a></li>
@@ -43,49 +49,7 @@
     <footer class="footer">Copyright © 2014.Company name All rights reserved.</footer>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/news_detail.js"></script>
-    <script>
-        // var slider = $(".navigation");
-        // var  _header = $(".header");
-        // $(window).scroll(function () {
-        //     if ($(window).scrollTop() >= _header.offset().top + (_header.height()) -2 ) {
-        //         slider.addClass("downscrolled");
-        //     }else{
-        //         slider.removeClass("downscrolled");
-        //     }
-        // });
-        //请求数据
-        function requestData(){
-            $.ajax({
-                url:"/queryAll",
-                type:"get",
-                success: function (data) {
-                    var dataList = JSON.parse(data).data;
-                    renderNews(dataList);
-                },
-                error: function (error) {
-                    console.log(error)
-                }
-            });
-        }
-        function renderNews(data) {
-            var str = "";
-            var len = data.length;
-            for(var i = 0; i < len; i ++) {
-                str += "<div class=\"content_box\">\n" +
-                    "                <a href=\"/frontstage/news_detail.html?bid="+ data[i].id+"\">\n" +
-                    "                    <div class=\"list_box clearfix\">\n" +
-                    "                        <div class=\"image_box\">\n" +
-                    "                            <img src=\"../"+ data[i].news_image +"\" alt=\"\">\n" +
-                    "                        </div>\n" +
-                    "                        <div class=\"text_box\">"+ data[i].news_title +"</div>\n" +
-                    "                    </div>\n" +
-                    "                </a>\n" +
-                    "            </div>"
-            }
-            $(".wrapper .container").append(str)
-
-        }
-        requestData();
-    </script>
+    <script src="../js/base_scroll.js"></script>
+    <script src="../js/news_index.js"></script>
 </body>
 </html>

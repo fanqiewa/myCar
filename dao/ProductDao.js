@@ -51,8 +51,41 @@ function queryProductByVersion(category_name,product_version,success) {
     connection.end();
 }
 
+//查询全部产品
+function queryAllProduct(success) {
+    var querySql = "select * from product order by id desc";
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    })
+    connection.end();
+}
 
+//根据类别查询产品
+function queryProductByCategory(category_name,success) {
+    var querySql = "select * from product where category_name = ?";
+    var params = [category_name];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    })
+    connection.end();
+}
 
 module.exports.insertProduct = insertProduct;
 module.exports.queryProductById = queryProductById;
 module.exports.queryProductByVersion = queryProductByVersion;
+module.exports.queryAllProduct = queryAllProduct;
+module.exports.queryProductByCategory = queryProductByCategory;
+

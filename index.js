@@ -7,25 +7,21 @@ var multerConfig = require("./multerConfig")
 var app = new express();
 
 // var uploadSingle = multer({dest:"./file/"})
-
-// var storage1= multer.diskStorage({
-//     //设置上传后文件路径
-//     destination: function (req, file, cb) {
-//         cb(null, './page/public/')
-//     },
-//     //给上传文件重命名，获取添加后缀名
-//     filename: function (req, file, cb) {
-//         var fileFormat = (file.originalname).split(".");
-//         cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
-//     }
-// });
 var uploadSingle1 = multer({
     storage: multerConfig.storage1
 })
 var uploadSingle2 = multer({
     storage: multerConfig.storage2
 })
-
+var uploadSingle3 = multer({
+    storage: multerConfig.storage3
+})
+var uploadSingle4 = multer({
+    storage: multerConfig.storage4
+})
+var uploadSingle5 = multer({
+    storage: multerConfig.storage5
+})
 
 
 app.use(express.static("./page/"))
@@ -36,7 +32,14 @@ app.post("/addNews",uploadSingle1.single("file"),loader.get("/addNews"));
 
 app.post("/addProduct",uploadSingle2.single("product_image"),loader.get("/addProduct"));
 
+//添加外观
+app.post("/addFacade",uploadSingle3.single("facade_image"),loader.get("/addFacade"));
 
+//添加内饰
+app.post("/addDecorate",uploadSingle4.single("decorate_image"),loader.get("/addDecorate"));
+
+//添加科技
+app.post("/addTechnology",uploadSingle5.single("technology_image"),loader.get("/addTechnology"));
 
 //查询全部新闻
 app.get("/queryAllNews",loader.get("/queryAllNews"));
@@ -46,6 +49,8 @@ app.get("/queryNewsById",loader.get("/queryNewsById"));
 app.get("/queryNewsByViews",loader.get("/queryNewsByViews"));
 //查询全部新闻
 app.get("/queryAll",loader.get("/queryAll"));
+//模糊查询新闻
+app.get("/queryNewsByBlur",loader.get("/queryNewsByBlur"));
 
 
 //查询产品类别
@@ -57,10 +62,16 @@ app.get("/queryProductById",loader.get("/queryProductById"));
 //查询全部version
 app.get("/queryAllVersion",loader.get("/queryAllVersion"));
 
-
-//添加外观
-app.post("/addFacade",loader.get("/addFacade"))
-
+//根据product_id查询facade
+app.get("/queryFacadeById",loader.get("/queryFacadeById"));
+//根据product_id查询decorate
+app.get("/queryDecorateById",loader.get("/queryDecorateById"))
+//根据product_id查询technology
+app.get("/queryTechnologyById",loader.get("/queryTechnologyById"));
+//查询全部产品
+app.get("/queryAllProduct",loader.get("/queryAllProduct"));
+//根据类别查询产品
+app.get("/queryProductByCategory",loader.get("/queryProductByCategory"));
 
 //添加评论
 app.post("/addSuggest",loader.get("/addSuggest"));

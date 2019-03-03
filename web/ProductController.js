@@ -42,15 +42,34 @@ function queryProductById(request,response) {
     var params = url.parse(request.url,true).query;
     productService.queryProductById(params.id,function (result) {
         response.writeHead(200);
-        response.write(respUtil.writeResult("success","添加成功",result));
+        response.write(respUtil.writeResult("success","查询成功",result));
+        response.end();
+    })
+}
+
+//查询全部product
+function queryAllProduct(request,response) {
+    productService.queryAllProduct(function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","查询成功",result));
+        response.end();
+    })
+}
+
+//根据类别查询product
+function queryProductByCategory(request,response) {
+    var params = url.parse(request.url,true).query;
+    productService.queryProductByCategory(params.category_name,function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","查询成功",result));
         response.end();
     })
 }
 
 
-
 path.set("/addProduct",addProduct);
 path.set("/queryProductById",queryProductById);
-
+path.set("/queryAllProduct", queryAllProduct);
+path.set("/queryProductByCategory", queryProductByCategory);
 
 module.exports.path = path;
