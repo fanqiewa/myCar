@@ -28,5 +28,13 @@
         },500)
         return false;
     })
-
+    /*回到顶部*/
+    $(".go_top").on("click",function () {
+        if ($('html').scrollTop()) {
+            $('html').animate({ scrollTop: 0 }, 1000);
+            return false;
+        }
+        $('body').animate({ scrollTop: 0 }, 1000);
+        return false;
+    })
 }())

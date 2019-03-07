@@ -400,3 +400,23 @@ div{
     border-top: 3px solid #1688d3;
     color:white;
 }
+
+/*go_top*/
+.go_top {
+    /*display: inline-block;*/
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+.go_top span {
+    color: #0798b5;
+    font-size: 25px;
+}
+.go_top:hover {
+    background: #0798b5;
+}
+.go_top:hover span {
+    color: white;
+}

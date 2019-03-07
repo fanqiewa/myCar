@@ -38,6 +38,22 @@ function queryNewsByBlur(text,success){
     newsDao.queryNewsByBlur(text,success)
 }
 
+//根据page查询
+function queryNewsByPage(page, pageSize,success) {
+    newsDao.queryNewsByPage(page,pageSize,success)
+}
+
+//根据id删除新闻
+
+function deleteNewsById(id,success) {
+    newsDao.deleteNewsById(id,success)
+}
+
+//根据id更新作者
+function updateNewsById(id,change,value,success) {
+    newsDao.updateNewsById(id,change,value,success)
+}
+
 module.exports = {
     "insertNews": insertNews,
     "queryAllNews" : queryAllNews,
@@ -45,5 +61,9 @@ module.exports = {
     "queryNewsByViews" : queryNewsByViews,
     "addViews" : addViews,
     "queryAll" : queryAll,
-    "queryNewsByBlur" : queryNewsByBlur
+    "queryNewsByBlur" : queryNewsByBlur,
+    "queryNewsByPage": queryNewsByPage,
+    "deleteNewsById" : deleteNewsById,
+    "updateNewsById" : updateNewsById
+
 }

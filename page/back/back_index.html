@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+        .box_content {
+            margin: 10px;
+        }
+        .top_box {
+            margin-bottom: 10px;
+            padding: 15px;
+            line-height: 22px;
+            border-left: 5px solid #009688;
+            border-radius: 0 2px 2px 0;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="box_content">
+            <h1>新闻列表</h1>
+            <div class="top_box">
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input input_text" placeholder="请输入关键字">
+                </div>
+                <button class="layui-btn search_btn">查询</button>
+                <button class="layui-btn layui-btn-normal">添加文章</button>
+                <button class="layui-btn  layui-btn-danger" data-type="getCheckData">批量删除</button>
+            </div>
+
+            <table id="demo" lay-filter="test"></table>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script src="./layui/jquery.min.js"></script>
+<script src="./layui/layui.all.js"></script>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-sm edit" lay-event="edit" ><i class="layui-icon layui-icon-edit"></i> 编辑</a>
+        <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del" ><i class="layui-icon layui-icon-delete"></i> 删除</a>
+    </div>
+</script>
+<script>
+
+    layui.use('table', function(){
+        var table = layui.table;
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,url: '/queryAll' //数据接口
+            ,response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
+            ,parseData:function (res) {
+                return {
+                    "code": res.status, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "data": res.data //解析数据列表
+                }
+            }
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {type:'checkbox'}
+                ,{field: 'id', title: 'ID', sort: true,width:60}
+                ,{field: 'news_title', title: '新闻标题',edit:"text",width:400}
+                ,{field: 'news_author', title: '新闻作者',edit:"text"}
+                ,{field: 'news_views', title: '浏览次数',width:100}
+                ,{field: 'news_ctime', title: '创建时间'}
+                ,{field: 'right', title:'操作',toolbar: '#toolbarDemo' }
+            ]]
+        });
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            console.log(obj)
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url: "/deleteNewsById?id=" + data.id,
+                        type: "get",
+                        success: function (data) {
+                            if(JSON.parse(data).msg === "删除成功") {
+                                obj.del();
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                    layer.close(index);
+                    layer.msg('成功删除一条数据！', {icon: 6});
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    console.log(value)
+                    // obj.update({
+                    //     news_title: value
+                    // });
+                    // layer.close(index);
+                });
+            }
+        });
+        //监听单元格编辑
+        table.on('edit(test)', function(obj){
+            var value = obj.value; //得到修改后的值
+            var data = obj.data //得到所在行所有键值
+            var field = obj.field; //得到字段
+            var url = "/updateNewsById?id=" + data.id + "&change=" + field + "&value=" + value;
+            $.ajax({
+                url:url,
+                type: "post",
+                success : function (data) {
+                    if(JSON.parse(data).msg === "更新成功") {
+                        layer.msg('修改成功！', {icon: 6});
+                    }
+                },
+                 error: function(error) {
+                    console.log(error)
+                 }
+            })
+
+
+
+
+        });
+
+        var btn = layui.$(".search_btn");
+        var errorCode = layui.$(".input_text");
+        errorCode.on("keypress",function (e) {
+            if(e.keyCode == 13) {
+                btn.trigger("click");
+            }
+
+        })
+        btn.on("click",function (e) {
+            var blurText = $(".input_text").val();
+            if(blurText == "") {
+                layer.msg('请输入需要查询的内容！');
+            } else {
+                queryBlurNews(blurText);
+            }
+        })
+        function queryBlurNews(blurText) {
+            // $.ajax({
+            // url: "/queryNewsByBlur?text=" + blurText,
+            //     type: "get",
+            //     success: function(data) {
+            //         console.log(JSON.parse(data).data)
+            //
+            //     },
+            //     error: function(error) {
+            //         console.log(error)
+            //     }
+            //
+            // })
+            table.render({
+                elem: '#demo'
+                ,url: '/queryNewsByBlur?text=' + blurText //数据接口
+                ,response: {
+                    statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+                }
+                ,parseData:function (res) {
+                    return {
+                        "code": res.status, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "data": res.data //解析数据列表
+                    }
+                }
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                    {type:'checkbox'}
+                    ,{field: 'id', title: 'ID', sort: true,width:60}
+                    ,{field: 'news_title', title: '新闻标题',edit:"text",width:400}
+                    ,{field: 'news_author', title: '新闻作者',edit:"text"}
+                    ,{field: 'news_views', title: '浏览次数',width:100}
+                    ,{field: 'news_ctime', title: '创建时间'}
+                    ,{field: 'right', title:'操作',toolbar: '#toolbarDemo' }
+                ]]
+            });
+        }
+
+        var $ = layui.$, active = {
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('demo')
+                    ,data = checkStatus.data;
+                console.log(data);
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+</script>
+</body>
+</html>

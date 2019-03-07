@@ -864,3 +864,24 @@ div{
 .artical_info .post_bottom .post_bottom_right_white a:hover {
     background:#078095;
 }
+
+
+/*go_top*/
+.go_top {
+    /*display: inline-block;*/
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+.go_top span {
+    color: #0798b5;
+    font-size: 25px;
+}
+.go_top:hover {
+    background: #0798b5;
+}
+.go_top:hover span {
+    color: white;
+}

@@ -67,7 +67,7 @@ path.set("/queryNewsByViews",queryNewsByViews);
 function queryAll(request,response) {
     newsService.queryAll(function (result) {
         response.writeHead(200);
-        response.write(respUtil.writeResult("success","查询成功",result));
+        response.write(respUtil.writeResult("200","查询成功",result));
         response.end();
     })
 
@@ -81,7 +81,7 @@ function queryNewsByBlur(request,response) {
     var params = url.parse(request.url,true).query;
     newsService.queryNewsByBlur(params.text,function (result) {
         response.writeHead(200);
-        response.write(respUtil.writeResult("success","查询成功",result));
+        response.write(respUtil.writeResult("200","查询成功",result));
         response.end();
     })
 
@@ -89,6 +89,44 @@ function queryNewsByBlur(request,response) {
 
 path.set("/queryNewsByBlur",queryNewsByBlur);
 
+//查询页数
+function queryNewsByPage(request,response) {
+    var params = url.parse(request.url,true).query;
+    newsService.queryNewsByPage(parseInt(params.page),parseInt(params.pageSize),function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","查询成功",result));
+        response.end();
+    })
+}
 
+path.set("/queryNewsByPage",queryNewsByPage)
+
+//根据id删除新闻
+function deleteNewsById(request,response) {
+    var params = url.parse(request.url,true).query;
+    newsService.deleteNewsById(parseInt(params.id),function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","删除成功",result));
+        response.end();
+    })
+}
+
+
+
+
+path.set("/deleteNewsById",deleteNewsById)
+
+
+//更新作者
+function updateNewsById(request,response) {
+    var params = url.parse(request.url,true).query;
+    newsService.updateNewsById(parseInt(params.id),params.change,params.value,function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","更新成功",result));
+        response.end();
+    })
+}
+
+path.set("/updateNewsById",updateNewsById)
 
 module.exports.path = path;

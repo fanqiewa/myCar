@@ -117,6 +117,59 @@ function queryNewsByBlur(text,success){
 
 }
 
+
+
+// 根据page查询
+
+function queryNewsByPage(page,pageSize,success) {
+    var querySql = "select * from news order by id desc limit ?, ?";
+    var params = [page * pageSize,pageSize];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+//删除一条新闻
+
+function deleteNewsById(id,success) {
+    var deleteSql = "delete from news where id = ?";
+    var params = [id];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(deleteSql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+
+//根据id更新数据
+function updateNewsById(id,change,value,success) {
+    var updataSql = "update news set " + change + "= '" + value + "' where id =" + id;
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(updataSql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
 module.exports.insertNews = insertNews;
 module.exports.queryAllNews = queryAllNews;
 module.exports.queryNewsById = queryNewsById;
@@ -124,3 +177,6 @@ module.exports.queryNewsByViews =queryNewsByViews;
 module.exports.addViews = addViews;
 module.exports.queryAll = queryAll;
 module.exports.queryNewsByBlur = queryNewsByBlur;
+module.exports.queryNewsByPage = queryNewsByPage;
+module.exports.deleteNewsById = deleteNewsById;
+module.exports.updateNewsById = updateNewsById;

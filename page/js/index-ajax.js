@@ -34,6 +34,14 @@
             function renderNews(data) {
                 var str_content = "";
                 var str_right = "";
+                for (var i = 0; i < data.length; i++){
+                    data[i].news_content = data[i].news_content.replace(/<img[\w\W]*">/,"");
+                    data[i].news_content = data[i].news_content.replace(/<[^>]+>/g,"");
+                    data[i].news_content = data[i].news_content.substring(0,300);
+                    if(data[i].news_content.length >= 300) {
+                        data[i].news_content +=  "...";
+                    }
+                }
                for(var i = 0; i < data.length - 2 ; i ++) {
                     var time =  timestampToTime(data[i].news_ctime);
                    str_content += " <div class='artical_info\'>\n\
@@ -65,7 +73,7 @@
                                                </div>\n\
                                            </div>";
                 }
-                for(var i = 2; i < data.length; i ++) {
+               for(var i = 2; i < data.length; i ++) {
                        var time =  timestampToTime(data[i].news_ctime);
                        str_right += " <div class='artical_info\'>\n\
                                                <div class=\"post_head clearfix\">\n\
@@ -97,8 +105,8 @@
                                            </div>";
 
                 }
-                $(".news_content").append(str_content);
-                $(".news_right").append(str_right);
+               $(".news_content").append(str_content);
+               $(".news_right").append(str_right);
             }
             var size = 1;
             $.ajax({
@@ -118,6 +126,9 @@
                     data[i].news_content = data[i].news_content.replace(/<img[\w\W]*">/,"");
                     data[i].news_content = data[i].news_content.replace(/<[^>]+>/g,"");
                     data[i].news_content = data[i].news_content.substring(0,300);
+                    if(data[i].news_content.length = 300) {
+                        data[i].news_content +=  "...";
+                    }
                 }
                 var str = "<a href=\"#\" class=\"post_pic\">\n" +
                     "                        <img src=\"" + data[0].news_image + "\" alt=\"\">\n" +

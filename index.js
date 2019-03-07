@@ -2,9 +2,12 @@ var express = require("express");
 var globalConfig = require("./config");
 var loader = require("./loader");
 var multer = require("multer");
-var multerConfig = require("./multerConfig")
+var multerConfig = require("./multerConfig");
+var cookieParser = require("cookie-parser");
+var respUtil = require("./util/RespUtil");
 
 var app = new express();
+
 
 // var uploadSingle = multer({dest:"./file/"})
 var uploadSingle1 = multer({
@@ -25,7 +28,17 @@ var uploadSingle5 = multer({
 
 
 app.use(express.static("./page/"))
+app.use(cookieParser());
 
+
+// app.get("/*",function (request,response,next) {
+//         if(request.cookies.id) {
+//             next();
+//         }else {
+//             response.write("ok");
+//             response.end();
+//         }
+// })
 //添加新闻，上传图片
 app.post("/addNews",uploadSingle1.single("file"),loader.get("/addNews"));
 //添加产品
@@ -51,6 +64,12 @@ app.get("/queryNewsByViews",loader.get("/queryNewsByViews"));
 app.get("/queryAll",loader.get("/queryAll"));
 //模糊查询新闻
 app.get("/queryNewsByBlur",loader.get("/queryNewsByBlur"));
+//根据page查询新闻
+app.get("/queryNewsByPage",loader.get("/queryNewsByPage"));
+//根据Id删除新闻
+app.get("/deleteNewsById",loader.get("/deleteNewsById"))
+//根据id更新作者新闻
+app.post("/updateNewsById",loader.get("/updateNewsById"));
 
 
 //查询产品类别
