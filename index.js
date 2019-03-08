@@ -4,9 +4,11 @@ var loader = require("./loader");
 var multer = require("multer");
 var multerConfig = require("./multerConfig");
 var cookieParser = require("cookie-parser");
-var respUtil = require("./util/RespUtil");
+var bodyParser = require("body-parser");
 
 var app = new express();
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // var uploadSingle = multer({dest:"./file/"})
@@ -26,7 +28,6 @@ var uploadSingle5 = multer({
     storage: multerConfig.storage5
 })
 
-
 app.use(express.static("./page/"))
 app.use(cookieParser());
 
@@ -41,8 +42,8 @@ app.use(cookieParser());
 // })
 //添加新闻，上传图片
 app.post("/addNews",uploadSingle1.single("file"),loader.get("/addNews"));
-//添加产品
 
+//添加产品
 app.post("/addProduct",uploadSingle2.single("product_image"),loader.get("/addProduct"));
 
 //添加外观
@@ -70,6 +71,10 @@ app.get("/queryNewsByPage",loader.get("/queryNewsByPage"));
 app.get("/deleteNewsById",loader.get("/deleteNewsById"))
 //根据id更新作者新闻
 app.post("/updateNewsById",loader.get("/updateNewsById"));
+//批量删除
+app.get("/deleteAllNews",loader.get("/deleteAllNews"));
+//更新新闻内容
+app.get("/updateNewsConById",loader.get("/updateNewsConById"));
 
 
 //查询产品类别
@@ -91,6 +96,18 @@ app.get("/queryTechnologyById",loader.get("/queryTechnologyById"));
 app.get("/queryAllProduct",loader.get("/queryAllProduct"));
 //根据类别查询产品
 app.get("/queryProductByCategory",loader.get("/queryProductByCategory"));
+//根据分页查询
+app.get("/queryProductByPage",loader.get("/queryProductByPage"));
+//根据id删除单行
+app.get("/deleteProductById",loader.get("/deleteProductById"));
+//更新产品介绍
+app.get("/updateProductConById",loader.get("/updateProductConById"));
+//更新产品的其他内容
+app.post("/updateProductById",loader.get("/updateProductById"));
+//模糊查询
+app.get("/queryProductByBlur",loader.get("/queryProductByBlur"));
+//批量删除
+app.get("/deleteAllProduct",loader.get("/deleteAllProduct"));
 
 //添加评论
 app.post("/addSuggest",loader.get("/addSuggest"));

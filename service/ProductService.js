@@ -29,10 +29,47 @@ function queryProductByCategory(category_name,success) {
     productDao.queryProductByCategory(category_name,success)
 }
 
+//根据Page查询
+function queryProductByPage(page,pageSize,success) {
+    productDao.queryProductByPage(page,pageSize,success)
+}
+
+//根据id删除产品
+function deleteProductById(id,success) {
+    productDao.deleteProductById(id,success)
+}
+
+//根据id更新作者
+function updateProductById(id,change,value,success) {
+    productDao.updateProductById(id,change,value,success)
+}
+
+//根据Id更新产品简介
+function updateProductConById(id,value,success){
+    productDao.updateProductConById(id,value,success)
+}
+
+//模糊查询
+function queryProductByBlur(text,success){
+    productDao.queryProductByBlur(text,success)
+}
+
+//批量删除
+function deleteAllProduct(arr,success) {
+    productDao.deleteAllProduct(arr,success)
+}
+
+
 module.exports = {
     "insertProduct" : insertProduct,
     "queryProductById" : queryProductById,
     "queryProductByVersion" : queryProductByVersion,
     "queryAllProduct" : queryAllProduct,
-    "queryProductByCategory" : queryProductByCategory
+    "queryProductByCategory" : queryProductByCategory,
+    "queryProductByPage" : queryProductByPage,
+    "deleteProductById" : deleteProductById,
+    "updateProductConById" : updateProductConById,
+    "updateProductById" : updateProductById,
+    "queryProductByBlur" : queryProductByBlur,
+    "deleteAllProduct" : deleteAllProduct
 }

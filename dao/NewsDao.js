@@ -122,8 +122,13 @@ function queryNewsByBlur(text,success){
 // 根据page查询
 
 function queryNewsByPage(page,pageSize,success) {
+    if(page == 1) {
+        page = page;
+    } else {
+        page = page * pageSize - pageSize;
+    }
     var querySql = "select * from news order by id desc limit ?, ?";
-    var params = [page * pageSize,pageSize];
+    var params = [page-1,pageSize];
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(querySql,params,function (error,result) {
@@ -156,11 +161,11 @@ function deleteNewsById(id,success) {
 
 //根据id更新数据
 function updateNewsById(id,change,value,success) {
-    var updataSql = "update news set " + change + "= '" + value + "' where id =" + id;
+    var updateSql = "update news set " + change + "= '" + value + "' where id =" + id;
     var params = [];
     var connection = dbutil.createConnection();
     connection.connect();
-    connection.query(updataSql,params,function (error,result) {
+    connection.query(updateSql,params,function (error,result) {
         if(error == null) {
             success(result);
         } else {
@@ -169,6 +174,40 @@ function updateNewsById(id,change,value,success) {
     })
     connection.end();
 }
+
+//根据id更新数据
+function updateNewsConById(id,value,success) {
+    var updateSql = "update news set news_content = '" + value + "' where id =" + id;
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(updateSql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+//批量删除
+function deleteAllNew (arr,success) {
+    var deleteSql = "DELETE FROM news WHERE id IN ("+ arr.toString() +")";
+    var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(deleteSql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+
 
 module.exports.insertNews = insertNews;
 module.exports.queryAllNews = queryAllNews;
@@ -180,3 +219,5 @@ module.exports.queryNewsByBlur = queryNewsByBlur;
 module.exports.queryNewsByPage = queryNewsByPage;
 module.exports.deleteNewsById = deleteNewsById;
 module.exports.updateNewsById = updateNewsById;
+module.exports.deleteAllNew = deleteAllNew;
+module.exports.updateNewsConById = updateNewsConById;

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>千行后台管理登录</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        header {
+            height: 84px;
+        }
+        .login-wrap {
+            background: #36AABD;
+        }
+        .login-wrap .login_box {
+            width: 100%;
+            min-height: 410px;
+            margin: 35px 0;
+            background: #fff;
+        }
+        .login-wrap .login_box .form_tab {
+            width: 100%;
+            height: 52px;
+            border-bottom: 1px solid #ddd;
+        }
+        .login-wrap .login_box .form_tab .tab_li {
+            float: left;
+            width: 50%;
+            height: 50px;
+            border-bottom: 3px solid #fff;
+        }
+        .login-wrap .login_box .form_tab .tab_li.cur {
+            border-bottom-color: #d00;
+        }
+        .login-wrap .login_box .form_tab .tab_li.cur a {
+            color: #d00;
+        }
+        .login-wrap .login_box .form_tab .tab_li a {
+            position: relative;
+            display: block;
+            text-align: center;
+            height: 50px;
+            line-height: 52px;
+            font-size: 20px;
+            color: #999;
+            text-decoration: none;
+        }
+        .login_normal {
+            padding: 40px 40px 0;
+        }
+        .login_normal .dl {
+            padding: 15px 0;
+            position: relative;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-family: "Microsoft YaHei";
+            font-size: 14px;
+        }
+        .login_normal .dl lable {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            padding-left: 20px;
+        }
+        em {
+            padding: 0 7px;
+        }
+        .login_normal .dl .input_box {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            padding-left: 20px;
+        }
+        .pad {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <section class="login-wrap">
+        <div class="container wrap">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 pad">
+                <div class="login_box">
+                    <ul class="form_tab">
+                        <li class="tab_li">
+                            <a href="">微信登录</a>
+                        </li>
+                        <li class="tab_li cur">
+                            <a href="">账号登录</a>
+                            <i></i>
+                        </li>
+                    </ul>
+                    <div class="login_normal">
+                        <div class="dl">
+                            <lable>账户名：</lable>
+                            <span class="input_box">
+                                <input type="text" placeholder="用户名/邮箱/手机号">
+                            </span>
+                        </div>
+                        <div class="dl">
+                            <lable>密<em></em>码：</lable>
+                            <span class="input_box">
+                                <input type="password" placeholder="请输入密码">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script src="../js/jquery.min.js"></script>
+</body>
+
+</html>

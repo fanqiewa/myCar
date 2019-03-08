@@ -53,6 +53,14 @@ function deleteNewsById(id,success) {
 function updateNewsById(id,change,value,success) {
     newsDao.updateNewsById(id,change,value,success)
 }
+//批量删除
+function deleteAllNews(arr,success) {
+    newsDao.deleteAllNew(arr,success)
+}
+
+function updateNewsConById(id,value,success) {
+    newsDao.updateNewsConById(id,value,success);
+}
 
 module.exports = {
     "insertNews": insertNews,
@@ -64,6 +72,8 @@ module.exports = {
     "queryNewsByBlur" : queryNewsByBlur,
     "queryNewsByPage": queryNewsByPage,
     "deleteNewsById" : deleteNewsById,
-    "updateNewsById" : updateNewsById
+    "updateNewsById" : updateNewsById,
+    "deleteAllNews" : deleteAllNews,
+    "updateNewsConById" : updateNewsConById
 
 }

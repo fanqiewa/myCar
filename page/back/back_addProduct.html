@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>添加产品</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/back_base.css">
+    <style>
+        .layui-upload-img {
+            width: 110px;
+            height: 92px;
+            margin: 0 10px 10px 0;
+        }
+        #editor {
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">产品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="back_productList.html">产品列表</a></dd>
+                        <dd  class="layui-this"><a href="back_addProduct.html">产品添加</a></dd>
+                        <dd><a href="back_addFDT.html">外饰添加</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">新闻管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./back_newsList.html">新闻列表</a></dd>
+                        <dd><a href="./back_addNews.html">新闻添加</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body box_content">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>产品上传</legend>
+        </fieldset>
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品类别</label>
+                <div class="layui-input-block">
+                    <select name="city" lay-verify="required" id="select1">
+                        <!--<option value="0">北京</option>-->
+                        <!--<option value="1">上海</option>-->
+                        <!--<option value="2">广州</option>-->
+                        <!--<option value="3">深圳</option>-->
+                        <!--<option value="4">杭州</option>-->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品价格</label>
+            <div class="layui-input-block">
+                <input type="text" name="username"  placeholder="请输入产品价格" autocomplete="off" class="layui-input" id="product_price">
+            </div>
+        </div>
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品型号</label>
+                <div class="layui-input-block">
+                    <select name="city" lay-verify="required" id="select2">
+                        <!--<option value="0">北京</option>-->
+                        <!--<option value="1">上海</option>-->
+                        <!--<option value="2">广州</option>-->
+                        <!--<option value="3">深圳</option>-->
+                        <!--<option value="4">杭州</option>-->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品图片</label>
+            <img class="layui-upload-img" id="demo1">
+            <button type="button" class="layui-btn" id="test1" onclick="selectFile()">上传图片</button>
+            <input type="file" name="product_image" id="product_image" style="display:none" onchange="changepic(this)" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">一句话描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="username"  placeholder="请输入简短的文字描述一下产品特点" autocomplete="off" class="layui-input" id="product_describe">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">产品介绍</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" id="editor"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" onclick="submit()" >立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary" onclick="reset()">重置</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script src="./layui/jquery.min.js"></script>
+<script src="./layui/layui.all.js"></script>
+<script>
+    //请求类别：
+    layui.use(['form'],function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        function queryCategory() {
+            $.ajax({
+                type: "get",
+                url: "/queryAllCategory",
+                success : function (data) {
+                    renderSelect(JSON.parse(data).data)
+                },
+                error : function (error) {
+                    console.log(error)
+                }
+            });
+            function renderSelect(data) {
+                var str = "";
+                var len = data.length;
+                for(var i = 0; i < len; i ++) {
+                    str += "<option value=\""+ data[i].id +"\">" + data[i].category_name + "</option>"
+                }
+                $("#select1").append(str);
+                form.render();
+            }
+        }
+        queryCategory();
+
+        function queryVersion() {
+            $.ajax({
+                type: "get",
+                url: "/queryAllVersion",
+                success : function (data) {
+                    renderSelect(JSON.parse(data).data)
+                },
+                error : function (error) {
+                    console.log(error)
+                }
+            });
+            function renderSelect(data) {
+                var str = "";
+                var len = data.length;
+                for(var i = 0; i < len; i ++) {
+                    str += "<option value=\""+ data[i].id +"\">" + data[i].product_version + "</option>"
+                }
+                $("#select2").append(str);
+                form.render();
+            }
+        }
+        queryVersion()
+    })
+
+</script>
+
+
+<script>
+    function selectFile() {
+        $("#product_image").trigger("click");
+    }
+    function changepic() {
+        var reads= new FileReader();
+        f=document.getElementById('product_image').files[0];
+        reads.readAsDataURL(f);
+        reads.onload=function (e) {
+            document.getElementById('demo1').src=this.result;
+        };
+    }
+    function submit() {
+        var category_name = $("#select1 option:selected").text();
+        var product_version = $("#select2 option:selected").text();
+        var product_describe = $("#product_describe").val();
+        var product_price = $("#product_price").val();
+        var product_image = document.getElementById("product_image").files[0];
+        var content = $("#editor").val();
+        var changeContent = content.replace(/<img[^>]*>/g,"");
+        var form = new FormData();
+        var imageType = /^image\//;
+        if(category_name == "" || product_version == "" || product_describe == "" || product_price == "") {
+            alert("描述 or 价格 or 内容不能为空！");
+            return;
+        }
+        if(product_image == undefined) {
+            alert("请添加图片！");
+            return;
+
+        }
+        if(!imageType.test(product_image.type)) {//判断是否为图片
+            alert("请选择图片类型文件！！！")
+            return;
+        }
+        form.append("product_image",product_image);
+        form.append("content",content);
+        $.ajax({
+            url:"/addProduct?category_name=" + category_name + "&product_price=" + product_price + "&product_describe=" + product_describe + "&product_version=" + product_version,
+            type:"POST",
+            data:form,
+            processData:false,
+            contentType: false,
+            success:function (resp) {
+                if(JSON.parse(resp).msg == "该车型已存在,请重新选择！") {
+                    layer.msg(JSON.parse(resp).msg, {icon: 5});
+                } else if(JSON.parse(resp).msg == "添加成功"){
+                    layer.msg("以成功添加一条数据！", {icon: 1});
+                }
+                $("#product_describe").val("");
+                $("#editor").val("");
+                $("#product_price").val("");
+
+            },
+            error:function (resp) {
+                console.log(resp)
+            }
+        })
+
+    }
+    function reset() {
+        layer.msg("重置成功！");
+        $("#product_describe").val("");
+        $("#editor").val("");
+        $("#product_price").val("");
+    }
+</script>
+
+</body>
+</html>

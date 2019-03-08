@@ -9,12 +9,11 @@ var path = new Map();
 function addNews(request,response) {
     var params = url.parse(request.url,true).query;
     var imagePath = request.file.path.substring(5);
-    // console.log(request.form)
-        newsService.insertNews(params.title,params.author,request.body.content.toString(),imagePath,timeUtil.getNow(),timeUtil.getNow(),function (result) {
-            response.writeHead(200);
-            response.write(respUtil.writeResult("success","添加成功","null"));
-            response.end();
-        })
+    newsService.insertNews(params.title,params.author,request.body.content.toString(),imagePath,timeUtil.getNow(),timeUtil.getNow(),function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","添加成功","null"));
+        response.end();
+    })
 
 }
 
@@ -81,7 +80,7 @@ function queryNewsByBlur(request,response) {
     var params = url.parse(request.url,true).query;
     newsService.queryNewsByBlur(params.text,function (result) {
         response.writeHead(200);
-        response.write(respUtil.writeResult("200","查询成功",result));
+        response.write(respUtil.writeResult("200","查询成功",result,result.length));
         response.end();
     })
 
@@ -92,11 +91,15 @@ path.set("/queryNewsByBlur",queryNewsByBlur);
 //查询页数
 function queryNewsByPage(request,response) {
     var params = url.parse(request.url,true).query;
-    newsService.queryNewsByPage(parseInt(params.page),parseInt(params.pageSize),function (result) {
-        response.writeHead(200);
-        response.write(respUtil.writeResult("success","查询成功",result));
-        response.end();
+    newsService.queryAll(function (result) {
+        var count = result.length;
+        newsService.queryNewsByPage(parseInt(params.page),parseInt(params.limit),function (result) {
+            response.writeHead(200);
+            response.write(respUtil.writeResult("200","查询成功",result,count));
+            response.end();
+        })
     })
+
 }
 
 path.set("/queryNewsByPage",queryNewsByPage)
@@ -116,6 +119,18 @@ function deleteNewsById(request,response) {
 
 path.set("/deleteNewsById",deleteNewsById)
 
+//删除多行
+function deleteAllNews(request,response) {
+    var params = url.parse(request.url,true).query;
+    var arr = params.listContentId.split(",");
+    newsService.deleteAllNews(arr,function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("200","删除成功",result));
+        response.end();
+    })
+}
+
+path.set("/deleteAllNews",deleteAllNews)
 
 //更新作者
 function updateNewsById(request,response) {
@@ -126,7 +141,17 @@ function updateNewsById(request,response) {
         response.end();
     })
 }
-
 path.set("/updateNewsById",updateNewsById)
+
+function updateNewsConById(request, response) {
+    var params = url.parse(request.url,true).query;
+    newsService.updateNewsConById(parseInt(params.id),params.content,function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("200","更新成功",result));
+        response.end();
+    })
+}
+
+path.set("/updateNewsConById",updateNewsConById)
 
 module.exports.path = path;

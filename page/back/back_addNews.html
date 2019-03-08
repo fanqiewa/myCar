@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>添加新闻</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/back_base.css">
+    <style>
+        .layui-upload-img {
+            width: 110px;
+            height: 92px;
+            margin: 0 10px 10px 0;
+        }
+        #editor {
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">产品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="back_productList.html">产品列表</a></dd>
+                        <dd><a href="back_addProduct.html">产品添加</a></dd>
+                        <dd><a href="back_addFDT.html">外饰添加</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">新闻管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./back_newsList.html">新闻列表</a></dd>
+                        <dd class="layui-this"><a href="./back_addNews.html">新闻添加</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body box_content">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>新闻上传</legend>
+        </fieldset>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文章标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input" id="news_title">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文章作者</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username"  placeholder="请输入文章作者" autocomplete="off" class="layui-input" id="news_author">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文章图片</label>
+                <img class="layui-upload-img" id="demo1">
+                <button type="button" class="layui-btn" id="test1" onclick="selectFile()">上传图片</button>
+                <input type="file" name="excelFile" id="news_image" style="display:none" onchange="changepic(this)" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">文章内容</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea" id="editor"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" onclick="submit()" >立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary" onclick="reset()">重置</button>
+                </div>
+            </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script src="./layui/jquery.min.js"></script>
+<script src="./layui/layui.all.js"></script>
+<script>
+    function selectFile() {
+        $("#news_image").trigger("click");
+    }
+    function changepic() {
+        var reads= new FileReader();
+        f=document.getElementById('news_image').files[0];
+        reads.readAsDataURL(f);
+        reads.onload=function (e) {
+            document.getElementById('demo1').src=this.result;
+        };
+    }
+    function submit() {
+        var title = $("#news_title").val();
+        var author = $("#news_author").val();
+        var file = document.getElementById("news_image").files[0];
+        var content = $("#editor").val();
+        var changeContent = content.replace(/<img[^>]*>/g,"");
+        var form = new FormData();
+        var imageType = /^image\//;
+        if(title == "" || author == "" || content == "") {
+            alert("title or author or 内容不能为空！");
+            return;
+        }
+        if(file == undefined) {
+            alert("请添加图片！");
+            return;
+
+        }
+        if(!imageType.test(file.type)) {//判断是否为图片
+            alert("请选择图片类型文件！！！")
+            return;
+        }
+        form.append("file",file);
+        form.append("content",content);
+        $.ajax({
+            url:"/addNews?title=" + title + "&author=" + author,
+            type:"POST",
+            data:form,
+            processData:false,
+            contentType: false,
+            success:function (resp) {
+                layer.msg("成功添加一篇文章！", {icon: 1});
+                $("#news_title").val("");
+                $("#news_author").val("");
+                $("#editor").val("");
+            },
+            error:function (resp) {
+                console.log(resp)
+            }
+        })
+
+    }
+    function reset() {
+        layer.msg("重置成功！");
+        $("#news_title").val("");
+        $("#news_author").val("");
+        $("#editor").val("");
+    }
+</script>
+
+</body>
+</html>
