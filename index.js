@@ -32,14 +32,8 @@ app.use(express.static("./page/"))
 app.use(cookieParser());
 
 
-// app.get("/*",function (request,response,next) {
-//         if(request.cookies.id) {
-//             next();
-//         }else {
-//             response.write("ok");
-//             response.end();
-//         }
-// })
+app.get("/api/*",loader.get("/getCookie"))
+
 //添加新闻，上传图片
 app.post("/addNews",uploadSingle1.single("file"),loader.get("/addNews"));
 
@@ -66,7 +60,7 @@ app.get("/queryAll",loader.get("/queryAll"));
 //模糊查询新闻
 app.get("/queryNewsByBlur",loader.get("/queryNewsByBlur"));
 //根据page查询新闻
-app.get("/queryNewsByPage",loader.get("/queryNewsByPage"));
+app.get("/api/queryNewsByPage",loader.get("/queryNewsByPage"));
 //根据Id删除新闻
 app.get("/deleteNewsById",loader.get("/deleteNewsById"))
 //根据id更新作者新闻
@@ -78,7 +72,7 @@ app.get("/updateNewsConById",loader.get("/updateNewsConById"));
 
 
 //查询产品类别
-app.get("/queryAllCategory",loader.get("/queryAllCategory"));
+app.get("/api/queryAllCategory",loader.get("/queryAllCategory"));
 
 //根据id查询产品
 app.get("/queryProductById",loader.get("/queryProductById"));
@@ -97,7 +91,7 @@ app.get("/queryAllProduct",loader.get("/queryAllProduct"));
 //根据类别查询产品
 app.get("/queryProductByCategory",loader.get("/queryProductByCategory"));
 //根据分页查询
-app.get("/queryProductByPage",loader.get("/queryProductByPage"));
+app.get("/api/queryProductByPage",loader.get("/queryProductByPage"));
 //根据id删除单行
 app.get("/deleteProductById",loader.get("/deleteProductById"));
 //更新产品介绍
@@ -111,6 +105,10 @@ app.get("/deleteAllProduct",loader.get("/deleteAllProduct"));
 
 //添加评论
 app.post("/addSuggest",loader.get("/addSuggest"));
+//获取验证码
+app.get("/queryRandomCode",loader.get("/queryRandomCode"));
+//查询登录
+app.get("/queryUser",loader.get("/queryUser"));
 
 
 app.listen(globalConfig.port,function () {

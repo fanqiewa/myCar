@@ -20,12 +20,13 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo">
+            <img src="../img/logo.png" alt="" style="width: 80%;height: 100%">
+        </div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
             <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
@@ -38,15 +39,15 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
+                    <img src="./img/1.jpg" class="layui-nav-img">
+                    陈忠泽
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="./login.html">注销</a></li>
         </ul>
     </div>
 
@@ -116,7 +117,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">产品图片</label>
             <img class="layui-upload-img" id="demo1">
-            <button type="button" class="layui-btn" id="test1" onclick="selectFile()">上传图片</button>
+            <button type="button" class="layui-btn" id="test1" onclick="selectFile()"><i class="layui-icon">&#xe67c;</i>上传图片</button>
             <input type="file" name="product_image" id="product_image" style="display:none" onchange="changepic(this)" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
         </div>
         <div class="layui-form-item">
@@ -139,9 +140,9 @@
         </div>
     </div>
 
-    <div class="layui-footer">
+    <div class="layui-footer" style="text-align: center">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        Copyright © 2014.Company name All rights reserved.
     </div>
 </div>
 
@@ -155,8 +156,11 @@
         function queryCategory() {
             $.ajax({
                 type: "get",
-                url: "/queryAllCategory",
+                url: "/api/queryAllCategory",
                 success : function (data) {
+                    if(JSON.parse(data).msg == "Fail") {
+                        window.location.href = "login.html"
+                    }
                     renderSelect(JSON.parse(data).data)
                 },
                 error : function (error) {

@@ -6,115 +6,115 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>千行后台管理登录</title>
     <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <style>
-        header {
-            height: 84px;
-        }
-        .login-wrap {
-            background: #36AABD;
-        }
-        .login-wrap .login_box {
-            width: 100%;
-            min-height: 410px;
-            margin: 35px 0;
-            background: #fff;
-        }
-        .login-wrap .login_box .form_tab {
-            width: 100%;
-            height: 52px;
-            border-bottom: 1px solid #ddd;
-        }
-        .login-wrap .login_box .form_tab .tab_li {
-            float: left;
-            width: 50%;
-            height: 50px;
-            border-bottom: 3px solid #fff;
-        }
-        .login-wrap .login_box .form_tab .tab_li.cur {
-            border-bottom-color: #d00;
-        }
-        .login-wrap .login_box .form_tab .tab_li.cur a {
-            color: #d00;
-        }
-        .login-wrap .login_box .form_tab .tab_li a {
-            position: relative;
-            display: block;
-            text-align: center;
-            height: 50px;
-            line-height: 52px;
-            font-size: 20px;
-            color: #999;
-            text-decoration: none;
-        }
-        .login_normal {
-            padding: 40px 40px 0;
-        }
-        .login_normal .dl {
-            padding: 15px 0;
-            position: relative;
-            width: 100%;
-            border: 1px solid #ddd;
-            font-family: "Microsoft YaHei";
-            font-size: 14px;
-        }
-        .login_normal .dl lable {
-            display: inline-block;
-            height: 20px;
-            line-height: 20px;
-            padding-left: 20px;
-        }
-        em {
-            padding: 0 7px;
-        }
-        .login_normal .dl .input_box {
-            display: inline-block;
-            height: 20px;
-            line-height: 20px;
-            padding-left: 20px;
-        }
-        .pad {
-            padding: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <header></header>
+    <header id="header" class="header clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="header-wrap clearfix">
+                <div class="col-md-4">
+                    <div id="logo">
+                        <a href="../index.html">
+                            <img src="../img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="btn-menu">
+                        <span></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</header>
     <section class="login-wrap">
         <div class="container wrap">
             <div class="col-lg-4"></div>
             <div class="col-lg-4"></div>
             <div class="col-lg-4 pad">
-                <div class="login_box">
+                <div class="login_box clearfix">
                     <ul class="form_tab">
                         <li class="tab_li">
-                            <a href="">微信登录</a>
+                            <a href="javascript:;">微信登录</a>
                         </li>
                         <li class="tab_li cur">
-                            <a href="">账号登录</a>
+                            <a href="javascript:;">账号登录</a>
                             <i></i>
                         </li>
                     </ul>
                     <div class="login_normal">
                         <div class="dl">
-                            <lable>账户名：</lable>
+                            <label for="username">账户名：</label>
                             <span class="input_box">
-                                <input type="text" placeholder="用户名/邮箱/手机号">
+                                <input type="text"  id="username" placeholder="用户名/邮箱/手机号">
                             </span>
                         </div>
                         <div class="dl">
-                            <lable>密<em></em>码：</lable>
+                            <label for="password">密<em></em>码：</label>
                             <span class="input_box">
-                                <input type="password" placeholder="请输入密码">
+                                <input type="password" placeholder="请输入密码" id="password">
                             </span>
+                        </div>
+                    </div>
+                    <div class="comfir">
+                        <label for="com">验证码：</label>
+                        <input type="text" placeholder="" id="com" style="border:0;border-bottom:1px solid black;">
+                        <span class="comfir_img"></span>
+                    </div>
+                    <div class="btn_box">
+                        <input type="submit" value="登    录" class="submit_btn">
+                    </div>
+                    <div class="forget clearfix">
+                        <a href="javascript:;" class="float_left">新用户注册</a>
+                        <a href="javascript:;" class="float_right">忘记密码？</a>
+                    </div>
+                    <div class="login_short">
+                        <div class="login_short_box">
+                            <div class="short_left">
+                                <h6>使用合作账号登录</h6>
+                                <ul>
+                                    <li class="qq">
+                                    </li>
+                                    <li class="sina">
+                                    </li>
+                                    <li class="weixin">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="short_right">
+                                <h6>您还可以选择：</h6>
+                                <p>
+                                    <i class="phone"></i>
+                                    <a href="javascript:;" class="txt">手机快捷登录</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <section>
+        <div class="container footer_top">
+            <ul>
+                <li>关于我们<span>/</span></li>
+                <li>联系我们<span>/</span></li>
+                <li>最新产品<span>/</span></li>
+                <li>新闻中心<span>/</span></li>
+                <li>提供服务<span>/</span></li>
+                <li>更多</li>
+            </ul>
+            <p>版权所有 Copyright © 2014.Company name All rights reserved.</p>
+        </div>
+    </section>
+    <footer class="footer">Copyright © 2014.Company name All rights reserved.</footer>
 
-<script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>
