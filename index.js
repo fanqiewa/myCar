@@ -73,6 +73,7 @@ app.get("/updateNewsConById",loader.get("/updateNewsConById"));
 
 //查询产品类别
 app.get("/api/queryAllCategory",loader.get("/queryAllCategory"));
+app.get("/queryAllCategory",loader.get("/queryAllCategory"));
 
 //根据id查询产品
 app.get("/queryProductById",loader.get("/queryProductById"));
@@ -105,10 +106,26 @@ app.get("/deleteAllProduct",loader.get("/deleteAllProduct"));
 
 //添加评论
 app.post("/addSuggest",loader.get("/addSuggest"));
+//查询新的评论
+app.get("/queryNewSuggest",loader.get("/queryNewSuggest"));
+//查询所有评论
+app.get("/queryAllSuggest",loader.get("/queryAllSuggest"));
+
+
+//滚动通知
+
+//查询被重新浏览过的公告
+app.get("/queryNewPublic",loader.get("/queryNewPublic"));
+//更新动态
+app.get("/updateNoticePublic",loader.get("/updateNoticePublic"));
+
+
 //获取验证码
 app.get("/queryRandomCode",loader.get("/queryRandomCode"));
 //查询登录
 app.get("/queryUser",loader.get("/queryUser"));
+
+
 
 
 app.listen(globalConfig.port,function () {

@@ -119,7 +119,7 @@
                                 // document.cookie= "password=" + password + ";path=/";
                                 layer.msg("登录成功！",{icon:6});
                                 setTimeout(function () {
-                                    window.location.href = "./back_newsList.html"
+                                    window.location.href = "./back_index.html"
                                 },1000)
                             }
                         },

@@ -61,7 +61,7 @@
     display: inline-block;
     height: 20px;
     line-height: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     cursor: pointer;
     font-weight: 400;
 }
@@ -69,7 +69,7 @@
     display: inline-block;
     height: 20px;
     line-height: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     cursor: pointer;
     font-weight: 400;
 }
@@ -131,7 +131,7 @@ em {
 
 }
 .short_left {
-    width: 47%;
+    width: 48%;
 }
 .forget .float_right {
     float: right;
@@ -179,7 +179,7 @@ em {
 
 .short_right {
     float: left;
-    padding-left: 15px;
+    padding-left: 5px;
     border-left: 1px dotted #ddd;
 }
 
@@ -242,14 +242,4 @@ em {
 }
 
 
-/*footer*/
-.footer {
-    width: 100%;
-    text-align: center;
-    background: #232730;
-    padding: 1.2em 0;
-    border-top: 3px solid #1688d3;
-    color:white;
-    position: fixed;
-    bottom:0;
-}
+

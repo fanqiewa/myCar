@@ -25,7 +25,7 @@
 
     function requestNewsByPage(page,pageSize) {
         $.ajax({
-            url: "/queryNewsByPage?page=" + page + "&pageSize=" + pageSize,
+            url: "/api/queryNewsByPage?page=" + page + "&limit=" + pageSize,
             type: "get",
             success: function (data) {
                 var dataList = JSON.parse(data).data;
