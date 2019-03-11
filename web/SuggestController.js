@@ -39,4 +39,18 @@ function queryAllSuggest(request,response) {
 }
 path.set("/queryAllSuggest",queryAllSuggest);
 
+
+
+function updateNoticeById(request,response) {
+    var params = url.parse(request.url,true).query;
+    suggestService.updateNoticeById(params.id,function (result) {
+        suggestService.querySuggestById(params.id,function (result) {
+            response.writeHead(200);
+            response.write(respUtil.writeResult("success","查询成功",result));
+            response.end();
+        })
+    })
+}
+path.set("/updateNoticeById",updateNoticeById);
+
 module.exports.path = path;

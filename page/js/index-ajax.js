@@ -1,10 +1,12 @@
-(function ($) {
+(function ($,layui) {
+    var layer = layui.layer;
     var list = {
         init: function () {
             this.news();
             this.suggest();
             this.product();
             this.category();
+            this.public();
         },
         news: function () {
             var url = "/queryAllNews";
@@ -239,6 +241,50 @@
                 }
                 $(".product_list").append(str);
             }
+        },
+        public : function () {
+            $.ajax({
+                url: "/queryAllPublic",
+                type: "get",
+                success: function (data) {
+                    var dataList = JSON.parse(data).data;
+                    renderPublic(dataList)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+            function renderPublic(dataList) {
+                var len = dataList.length;
+                var str = "";
+                for(var i = 0; i < len; i ++) {
+                    str += " <li class='scroll_li' data='"+ dataList[i].id +"' style=\"height: 23px; line-height: 23px; overflow: hidden;\">\n" +
+                        "                                <a href=\"javascript:;\">" + dataList[i].public_title + "</a>\n" +
+                        "                            </li>"
+                };
+                $(".scroll-con").append(str);
+                var liList = $(".scroll_li");
+                var len = liList.length;
+                for(var i = 0; i < len; i ++) {
+                    (function (j) {
+                        var id = $(liList[i]).attr("data");
+                        $(liList[i]).on("click", function (e) {
+                          $.ajax({
+                              url: "/updateNoticePublicById?id=" + id,
+                              type: "get",
+                              success: function (data) {
+                                  var dataList = JSON.parse(data).data;
+                                  layer.alert(dataList[0].public_content,{title:"最新公告!",icon: 6})
+                              },
+                              error: function (error) {
+                                  console.log(error)
+                              }
+                          })
+                        })
+
+                    }(i))
+                }
+            }
         }
     }
     list.init();
@@ -298,4 +344,4 @@
         $(".product_content_wrapper").append(str);
     }
 
-}($))
+}($,layui))

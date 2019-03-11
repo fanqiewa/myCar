@@ -17,9 +17,22 @@ function queryAllSuggest(success) {
     suggestDao.queryAllSuggest(success);
 }
 
+//更新notice
+function updateNoticeById(id,success) {
+    suggestDao.updateNoticeById(id,success);
+}
+
+//根据ID查询
+function querySuggestById(id,success) {
+    suggestDao.querySuggestById(id,success)
+}
+
+//
 
 module.exports = {
     "insertSuggest": insertSuggest,
     "queryNewSuggest" : queryNewSuggest,
-    "queryAllSuggest" : queryAllSuggest
+    "queryAllSuggest" : queryAllSuggest,
+    "updateNoticeById" : updateNoticeById,
+    "querySuggestById" : querySuggestById
 }

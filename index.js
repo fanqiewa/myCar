@@ -110,15 +110,33 @@ app.post("/addSuggest",loader.get("/addSuggest"));
 app.get("/queryNewSuggest",loader.get("/queryNewSuggest"));
 //查询所有评论
 app.get("/queryAllSuggest",loader.get("/queryAllSuggest"));
-
+//更新评论notice
+app.get("/updateNoticeById",loader.get("/updateNoticeById"));
 
 //滚动通知
 
+//添加公告
+app.post("/addPublic",loader.get("/addPublic"));
 //查询被重新浏览过的公告
 app.get("/queryNewPublic",loader.get("/queryNewPublic"));
 //更新动态
 app.get("/updateNoticePublic",loader.get("/updateNoticePublic"));
-
+//查询所有公告
+app.get("/queryAllPublic",loader.get("/queryAllPublic"));
+//游客访问，更新动态
+app.get("/updateNoticePublicById",loader.get("/updateNoticePublicById"));
+//模糊查询
+app.get("/queryPublicByBlur",loader.get("/queryPublicByBlur"));
+//查询页数
+app.get("/api/queryPublicByPage", loader.get("/queryPublicByPage"));
+//删除单个数据
+app.get("/deletePublicById", loader.get("/deletePublicById"));
+//根据id更新公告content
+app.get("/updatePublicConById",loader.get("/updatePublicConById"));
+//根据id更新很多内容
+app.post("/updatePublicById", loader.get("/updatePublicById"));
+//删除多行
+app.get("/deleteAllPublic",loader.get("/deleteAllPublic"));
 
 //获取验证码
 app.get("/queryRandomCode",loader.get("/queryRandomCode"));

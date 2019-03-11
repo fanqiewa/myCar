@@ -37,7 +37,7 @@
     })
 
      /*公告滚动*/
-         $(function(){
+        window.onload =  function(){
                 var len = $(".scroll-con li").length;
                 if(len > 1){
                     textRoll=function(){
@@ -55,7 +55,7 @@
                         roll= setInterval('textRoll()',1500);
                     });
                 }
-            })
+            }
 
 
     /*回到顶部*/

@@ -16,7 +16,6 @@
     <link href="css/simplify.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./css/back_base.css">
-    <link rel="stylesheet" href="./css/back_base.css">
     <style>
         .top_box {
             margin-bottom: 10px;
@@ -47,7 +46,7 @@
                         <span class="badge badge-danger bounceIn">1</span>
                         <ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
                             <li class="user-avatar">
-                                <img src="img/1.jpg" alt="" class="img-circle">
+                                <img src="images/profile1.jpg" alt="" class="img-circle">
                                 <div class="user-content">
                                     <h5 class="no-m-bottom">Jane Doe</h5>
                                     <div class="m-top-xs">
@@ -105,7 +104,7 @@
                 <div class="pull-right m-right-sm">
                     <div class="user-block hidden-xs">
                         <a href="#" id="userToggle" data-toggle="dropdown">
-                            <img src="img/1.jpg" alt="" class="img-circle inline-block user-profile-pic">
+                            <img src="images/profile1.jpg" alt="" class="img-circle inline-block user-profile-pic">
                             <div class="user-detail inline-block">
                                 Jane Doe
                                 <i class="fa fa-angle-down"></i>
@@ -142,16 +141,16 @@
                                 <li><a>You have <span class="suggest"></span> new unread messages</a></li>
 
                                 <!--<li>-->
-                                    <!--<a class="clearfix" href="#">-->
-                                        <!--<img src="img/1.jpg" alt="User Avatar">-->
-                                        <!--<div class="detail">-->
-                                            <!--<strong>Baby Doe</strong>-->
-                                            <!--<p class="no-margin">-->
-                                                <!--Lorem ipsum dolor sit amet...-->
-                                            <!--</p>-->
-                                            <!--<small class="text-muted"><i class="fa fa-reply"></i> 9 Feb 2013</small>-->
-                                        <!--</div>-->
-                                    <!--</a>-->
+                                <!--<a class="clearfix" href="#">-->
+                                <!--<img src="images/profile1.jpg" alt="User Avatar">-->
+                                <!--<div class="detail">-->
+                                <!--<strong>Baby Doe</strong>-->
+                                <!--<p class="no-margin">-->
+                                <!--Lorem ipsum dolor sit amet...-->
+                                <!--</p>-->
+                                <!--<small class="text-muted"><i class="fa fa-reply"></i> 9 Feb 2013</small>-->
+                                <!--</div>-->
+                                <!--</a>-->
                                 <!--</li>-->
                                 <!--<li><a href="#">View all messages</a></li>-->
                             </ul>
@@ -162,7 +161,6 @@
                             <ul class="dropdown-menu notification dropdown-3 pull-right pub_list">
                                 <li><a href="#">You have <span class="public"></span> new notifications</a></li>
 
-                                <!--<li><a href="#">View all notifications</a></li>-->
                             </ul>
                         </li>
                     </ul>
@@ -189,7 +187,7 @@
                         </a>
                     </li>
                     <li class="bg-palette2">
-                        <a href="#l">
+                        <a href="#">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-desktop fa-lg"></i></span>
 										<span class="text m-left-sm">控制台</span>
@@ -215,7 +213,7 @@
                             <li><a href="back_addNews.html"><span class="submenu-label">添加新闻</span></a></li>
                         </ul>
                     </li>
-                    <li class="openable bg-palette4 open">
+                    <li class="openable bg-palette4">
                         <a href="#">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-tags fa-lg"></i></span>
@@ -227,7 +225,7 @@
 									</span>
                         </a>
                         <ul class="submenu">
-                            <li class="active"><a href="back_productList.html"><span class="submenu-label">产品列表</span></a></li>
+                            <li><a href="back_productList.html"><span class="submenu-label">产品列表</span></a></li>
                             <li><a href="back_addProduct.html"><span class="submenu-label">产品添加</span></a></li>
                             <li><a href="back_addFDT.html"><span class="submenu-label">其他</span></a></li>
                         </ul>
@@ -263,7 +261,7 @@
                             <li><a href=""><span class="submenu-label">基本信息</span></a></li>
                         </ul>
                     </li>
-                    <li class="openable bg-palette4">
+                    <li class="openable bg-palette4 open">
                         <a href="#">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
@@ -275,7 +273,7 @@
 									</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="back_publicList.html"><span class="submenu-label">公告列表</span></a></li>
+                            <li class="active"><a href="back_publicList.html"><span class="submenu-label">公告列表</span></a></li>
                             <li><a href="back_addPublic.html"><span class="submenu-label">公告添加</span></a></li>
                         </ul>
                     </li>
@@ -310,7 +308,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="lockscreen.html" class="pull-right font-18"><i class="ion-log-out"></i></a>
+                <a href="#" class="pull-right font-18"><i class="ion-log-out"></i></a>
             </div>
         </div><!-- sidebar-inner -->
     </aside>
@@ -319,14 +317,14 @@
         <!-- 内容主体区域 -->
         <div class="box_content">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>产品列表</legend>
+                <legend>公告列表</legend>
             </fieldset>
             <div class="top_box">
                 <div class="layui-input-inline">
                     <input type="text" class="layui-input input_text" placeholder="请输入关键字">
                 </div>
                 <button class="layui-btn search_btn">查询</button>
-                <a class="layui-btn layui-btn-normal" href="./back_addNews.html">添加产品</a>
+                <a class="layui-btn layui-btn-normal" href="./back_addNews.html">添加公告</a>
                 <button class="layui-btn  layui-btn-danger" data-type="getCheckData">批量删除</button>
             </div>
 
@@ -372,14 +370,16 @@
         <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del" ><i class="layui-icon layui-icon-delete"></i> 删除</a>
     </div>
 </script>
+
 <script>
+
 
     layui.use('table', function(){
         var table = layui.table;
         //第一个实例
         table.render({
             elem: '#demo'
-            ,url: '/api/queryProductByPage' //数据接口
+            ,url: '/api/queryPublicByPage' //数据接口
             ,response: {
                 statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
             }
@@ -397,10 +397,10 @@
                 {type:'numbers'}
                 ,{type:'checkbox'}
                 ,{field: 'id', title: 'ID', sort: true,width:60}
-                ,{field: 'category_name', title: '所属类别'}
-                ,{field: 'product_price', title: '产品价格',edit:"text"}
-                ,{field: 'product_describe', title: '一句话描述',edit:"text"}
-                ,{field: 'product_version', title: '产品型号'}
+                ,{field: 'public_title', title: '公告标题',edit:"text"}
+                ,{field: 'public_content', title: '公告内容',edit:"text"}
+                ,{field: 'public_nowview', title: '浏览次数'}
+                ,{field: 'public_ctime', title: '创建时间'}
                 ,{field: 'right', title:'操作',toolbar: '#toolbarDemo' }
             ]]
             ,done: function (data) {
@@ -414,18 +414,12 @@
             var data = obj.data;
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                    var flag = true;
                     $.ajax({
-                        url: "/deleteProductById?id=" + data.id,
+                        url: "/deletePublicById?id=" + data.id,
                         type: "get",
                         success: function (data) {
                             if(JSON.parse(data).msg === "删除成功") {
-                                console.log(false)
-                                flag = false;
-                                layer.msg('成功删除一条数据！', {icon: 6});
                                 obj.del();
-                            } else {
-                                layer.msg('删除失败！', {icon: 5});
                             }
                         },
                         error: function (error) {
@@ -433,26 +427,15 @@
                         }
                     })
                     layer.close(index);
-                    var demo;
-                    setTimeout(function () {
-                        if(flag) {
-                            demo = layer.load(0, {time: 10*1000}); //又换了种风格，并且设定最长等待10秒
-                        }
-                    },100);
-                    setTimeout(function () {
-                        if(flag) {
-                            layer.close(demo);
-                            layer.msg("删除失败！",{icon:5})
-                        }
-                    },1000)
+                    layer.msg('成功删除一条数据！', {icon: 6});
                 });
             } else if(obj.event === 'edit'){
                 layer.prompt({
                     formType: 2
                     ,maxlength: 10000
                     ,area: ['500px', '350px']
-                    ,title: '修改 ID 为 ['+ data.id +'] 的产品介绍'
-                    ,value: data.product_introduction
+                    ,title: '修改 ID 为 ['+ data.id +'] 的公告内容'
+                    ,value: data.public_content
                 }, function(value, index){
                     layer.close(index);
                     test(value,data.id);
@@ -465,7 +448,7 @@
             var value = obj.value; //得到修改后的值
             var data = obj.data //得到所在行所有键值
             var field = obj.field; //得到字段
-            var url = "/updateProductById?id=" + data.id + "&change=" + field + "&value=" + value;
+            var url = "/updatePublicById?id=" + data.id + "&change=" + field + "&value=" + value;
             $.ajax({
                 url:url,
                 type: "post",
@@ -494,46 +477,46 @@
         })
         btn.on("click",function (e) {
             var blurText = $(".input_text").val();
-            if(blurText == "") {
-                layer.msg('请输入需要查询的内容！');
-            } else {
+            // if(blurText == "") {
+            //     layer.msg('请输入需要查询的内容！');
+            // } else {
+            //     queryBlurNews(blurText);
+            // }
                 queryBlurNews(blurText);
-            }
+
         })
+        // function queryBlurNews(blurText) {
+        //     table.render({
+        //         elem: '#demo'
+        //         ,url: '/queryPublicByBlur?text=' + blurText //数据接口
+        //         ,response: {
+        //             statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+        //         }
+        //         ,parseData:function (res) {
+        //             return {
+        //                 "code": res.status, //解析接口状态
+        //                 "msg": res.msg, //解析提示文本
+        //                 "data": res.data, //解析数据列表
+        //                 "count" : res.count
+        //             }
+        //         }
+        //         ,page: true //开启分页
+        //         ,cols: [[ //表头
+        //             {type:'numbers'}
+        //             ,{type:'checkbox'}
+        //             ,{field: 'id', title: 'ID', sort: true,width:60}
+        //             ,{field: 'public_title', title: '公告标题',edit:"text"}
+        //             ,{field: 'public_content', title: '公告内容',edit:"text"}
+        //             ,{field: 'public_nowview', title: '浏览次数'}
+        //             ,{field: 'public_ctime', title: '创建时间'}
+        //             ,{field: 'right', title:'操作',toolbar: '#toolbarDemo' }
+        //         ]]
+        //     });
+        // }
         function queryBlurNews(blurText) {
-            table.render({
-                elem: '#demo'
-                ,url: '/queryProductByBlur?text=' + blurText //数据接口
-                ,response: {
-                    statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-                }
-                ,parseData:function (res) {
-                    return {
-                        "code": res.status, //解析接口状态
-                        "msg": res.msg, //解析提示文本
-                        "data": res.data, //解析数据列表
-                        "count" : res.count
-                    }
-                }
-                ,page: true //开启分页
-                ,cols: [[ //表头
-                    {type:'numbers'}
-                    ,{type:'checkbox'}
-                    ,{field: 'id', title: 'ID', sort: true,width:60}
-                    ,{field: 'category_name', title: '所属类别'}
-                    ,{field: 'product_price', title: '产品价格',edit:"text"}
-                    ,{field: 'product_describe', title: '一句话描述',edit:"text"}
-                    ,{field: 'product_version', title: '产品型号'}
-                    ,{field: 'right', title:'操作',toolbar: '#toolbarDemo' }
-                ]]
-                ,done: function (data) {
-                    if(data.data.length > 0) {
-                        layer.msg("查询到" + data.data.length + "条数据",{icon:6})
-                    } else {
-                        layer.msg("查询到" + data.data.length + "条数据",{icon:5})
-                    }
-                }
-            });
+            table.reload('demo',{
+                url:"/queryPublicByBlur?text=" + blurText
+            })
         }
 
         var $ = layui.$, active = {
@@ -547,11 +530,11 @@
                     for(var i = 0; i < len; i ++) {
                         arr.push(data[i].id)
                     }
-                    if(len <= 0 ) {
-                        layer.msg("请选中要删除的行")
+                    if(len <= 0) {
+                        layer.msg("请选中要删除的行！")
                     } else {
                         $.ajax({
-                            url: "/deleteAllProduct",
+                            url: "/deleteAllPublic",
                             type: "get",
                             // traditional :true,
                             data: {
@@ -561,7 +544,7 @@
                             success: function (data) {
                                 layer.msg("成功删除" + len + "条数据", {icon: 1});
                                 setTimeout(function () {
-                                    window.location.href = "back_productList.html";
+                                    window.location.href = "back_publicList.html";
                                 },2000)
                             },
                             error: function (error) {
@@ -578,30 +561,41 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+        function test(value,id) {
+            var formData = new FormData();
+            formData.append("content",value);
+            //这里一般是发送修改的Ajax请求
+            $.ajax({
+                type:"get",
+                url: "/updatePublicConById?id=" + id,
+                // data:formData,
+                data: {
+                    "content":""+value+""
+                },
+                dataType: "text",
+                success: function (data) {
+                    layer.msg('更新成功！', {icon: 6});
+                    table.reload('demo', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
     });
 
-    function test(value,id) {
-        var formData = new FormData();
-        formData.append("content",value);
-        //这里一般是发送修改的Ajax请求
-        $.ajax({
-            type:"get",
-            url: "/updateProductConById?id=" + id,
-            // data:formData,
-            data: {
-                "content":""+value+""
-            },
-            dataType: "text",
-            success: function (data) {
-                layer.msg('更新成功！', {icon: 6});
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-    }
+
+
 
 </script>
+
+
 <script src="js/base_ajax.js"></script>
+
+
 </body>
 </html>

@@ -69,7 +69,6 @@ function queryAll(request,response) {
         response.write(respUtil.writeResult("200","查询成功",result));
         response.end();
     })
-
 };
 
 path.set("/queryAll",queryAll);
@@ -99,7 +98,6 @@ function queryNewsByPage(request,response) {
             response.end();
         })
     })
-
 }
 
 path.set("/queryNewsByPage",queryNewsByPage)

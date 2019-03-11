@@ -43,7 +43,7 @@
                     dataList[i].suggest_comments +=  "...";
                 }
                 var time = timestampToTime(dataList[i].suggest_ctime);
-                str += "  <li>\n" +
+                str += "  <li class='getAttr-s' data-s='"+ dataList[i].id +"'>\n" +
                     "                                    <a class=\"clearfix\" href=\"#\">\n" +
                     "                                        <img src=\"img/"+ ran +".jpg\" alt=\"User Avatar\">\n" +
                     "                                        <div class=\"detail\">\n" +
@@ -119,7 +119,7 @@
                     dataList[i].public_title +=  "...";
                 }
                 var views = dataList[i].public_nowview - dataList[i].public_lastview;
-                str += "  <li data=\'"+ dataList[i].id +"\' class='getAttr'>\n" +
+                str += "  <li data-p=\'"+ dataList[i].id +"\' class='getAttr-p'>\n" +
                     "                                    <a href=\"#\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"notification-icon bg-success\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa "+ classStr +"\"></i>\n" +
@@ -136,38 +136,83 @@
             $(".pub_list").append(str).append(viewAllstr);
         }
 
-        //点击公告，设置notice为o,设置lastview等于nowview
+        //点击公告，设置public_notice为0,设置lastview等于nowview
         window.onload =  function updatePublic() {
-            var liList = $(".getAttr");
-            var len = liList.length;
-            for(var i = 0; i < len; i ++ ) {
-                (function (j) {
-                    $(liList[j]).on("click",function (e) {
-                        var id = $(this).attr("data");//获取id
-                        var _self = this;
-                        $.ajax({
-                            url:"/updateNoticePublic?id=" + id,
-                            type: "get",
-                            success: function(data) {
-                                var listData = JSON.parse(data)
-                                var msg = listData.msg;
-                                var view = listData.data.public_nowview - listData.data.public_lastview;
-                                if(msg == "查询成功") {
-                                    layer.alert('距离上次查看，该公告被浏览热度增加' + view, {icon: 6});
-                                }
-                                var num = $($(".public")[0]).text();
-                                $(".public").text(num - 1)
-                                $(_self).remove();
-                            },
-                            error: function (error) {
-                                console.log(error)
-                            }
-                        })
-                    })
-                }(i))
+            var obj = {
+                init: function () {
+                    this.getAttrOne();
+                    this.getAttrTwo();
+                },
+                getAttrOne: function () {
+                    var liList = $(".getAttr-p");
+                    var len = liList.length;
+                    for(var i = 0; i < len; i ++ ) {
+                        (function (j) {
+                            $(liList[j]).on("click",function (e) {
+                                var id = $(this).attr("data-p");//获取id
+                                console.log(id)
+                                var _self = this;
+                                $.ajax({
+                                    url:"/updateNoticePublic?id=" + id,
+                                    type: "get",
+                                    success: function(data) {
+                                        var listData = JSON.parse(data)
+                                        var msg = listData.msg;
+                                        var view = listData.data.public_nowview - listData.data.public_lastview;
+                                        if(msg == "查询成功") {
+                                            layer.alert('距离上次查看，该公告被浏览热度增加' + view, {icon: 6});
+                                        }
+                                        var num = $($(".public")[0]).text();
+                                        $(".public").text(num - 1)
+                                        $(_self).remove();
+                                    },
+                                    error: function (error) {
+                                        console.log(error)
+                                    }
+                                })
+                            })
+                        }(i))
+                    }
+                },
+                getAttrTwo: function (){
+                    var liList = $(".getAttr-s")
+                    var len = liList.length;
+                    for(var i = 0; i < len; i ++ ) {
+                        (function (j) {
+                            $(liList[j]).on("click",function (e) {
+                                var id = $(this).attr("data-s");//获取id
+                                var _self = this;
+                                $.ajax({
+                                    url:"/updateNoticeById?id=" + id,
+                                    type: "get",
+                                    success: function(data) {
+
+                                        var listData = JSON.parse(data);
+                                        var msg = listData.msg;
+                                        var name = listData.data[0].suggest_name;
+                                        var comments = listData.data[0].suggest_comments;
+                                        if(msg == "查询成功") {
+                                            layer.alert(comments, {title:"游客："+ name +"  留下了一条信息",icon: 6});
+                                        }
+                                        var num = $($(".suggest")[0]).text();
+                                        $(".suggest").text(num - 1)
+                                        $(_self).remove();
+                                    },
+                                    error: function (error) {
+                                        console.log(error)
+                                    }
+                                })
+                            })
+                        }(i))
+                    }
+                }
             }
+            obj.init()
 
         }
+
+
+
 
         queryAllSuggest();
         queryAllNewSuggest();
