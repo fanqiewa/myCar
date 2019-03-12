@@ -13,7 +13,6 @@
     function delCookie(name){
         var exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        console.log(exp.toGMTString())
         var cval=getCookie(name);
         if(cval!=null){
             document.cookie= name + "="+cval+";max-age= -1" + ";path=/";

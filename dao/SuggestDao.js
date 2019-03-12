@@ -33,7 +33,7 @@ function queryNewSuggest(success) {
     connection.end();
 }
 
-//查询评论
+//查询所有评论
 function queryAllSuggest(success) {
     var querySql = "select * from suggest order by id desc";
     var params = [];
@@ -81,9 +81,48 @@ function querySuggestById(id,success) {
     connection.end();
 }
 
+//根据Page查询全部留言
+function querySuggestByPage(page,pageSize,success) {
+    if(page == 1) {
+        page = page;
+    } else {
+        page = page * pageSize - pageSize;
+    }
+    var querySql = "select * from suggest order by id desc limit ?, ?";
+    var params = [page-1,pageSize];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
+
+//根据id删除
+
+function deleteSuggestById(id,success) {
+    var deleteSql = "delete from suggest where id = ?";
+    var params = [id];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(deleteSql,params,function (error,result) {
+        if(error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    })
+    connection.end();
+}
 
 module.exports.insertSuggest = insertSuggest;
 module.exports.queryNewSuggest = queryNewSuggest;
 module.exports.queryAllSuggest = queryAllSuggest;
 module.exports.updateNoticeById = updateNoticeById;
 module.exports.querySuggestById = querySuggestById;
+module.exports.querySuggestByPage = querySuggestByPage;
+module.exports.deleteSuggestById = deleteSuggestById;

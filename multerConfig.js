@@ -65,10 +65,22 @@ var storage5 = multer.diskStorage({
     }
 });
 
+var storage6 = multer.diskStorage({
+    //设置上传后文件路径
+    destination: "./page/back/public",
+    //给上传文件重命名，获取添加后缀名
+    filename: function (req, file, cb) {
+        var fileFormat = (file.originalname).split(".");
+        cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
+    }
+});
+
 module.exports = {
     "storage1" : storage1,
     "storage2" : storage2,
     "storage3" : storage3,
     "storage4" : storage4,
-    "storage5" : storage5
+    "storage5" : storage5,
+    "storage6" : storage6
+
 };

@@ -53,4 +53,33 @@ function updateNoticeById(request,response) {
 }
 path.set("/updateNoticeById",updateNoticeById);
 
+
+//查询页数
+function querySuggestByPage(request,response) {
+    var params = url.parse(request.url,true).query;
+    suggestService.queryAllSuggest(function (result) {
+        var count = result.length;
+        suggestService.querySuggestByPage(parseInt(params.page),parseInt(params.limit),function (result) {
+            response.writeHead(200);
+            response.write(respUtil.writeResult("200","查询成功",result,count));
+            response.end();
+        })
+    })
+}
+
+path.set("/querySuggestByPage",querySuggestByPage)
+
+
+//根据id删除留言
+function deleteSuggestById(request,response) {
+    var params = url.parse(request.url,true).query;
+    suggestService.deleteSuggestById(parseInt(params.id),function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult("success","删除成功",result));
+        response.end();
+    })
+}
+
+path.set("/deleteSuggestById",deleteSuggestById)
+
 module.exports.path = path;

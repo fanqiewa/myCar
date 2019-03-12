@@ -27,6 +27,9 @@ var uploadSingle4 = multer({
 var uploadSingle5 = multer({
     storage: multerConfig.storage5
 })
+var uploadSingle6 = multer({
+    storage: multerConfig.storage6
+})
 
 app.use(express.static("./page/"))
 app.use(cookieParser());
@@ -48,6 +51,10 @@ app.post("/addDecorate",uploadSingle4.single("decorate_image"),loader.get("/addD
 
 //添加科技
 app.post("/addTechnology",uploadSingle5.single("technology_image"),loader.get("/addTechnology"));
+
+//添加用户
+app.post("/addUser",uploadSingle6.array("file",3),loader.get("/addUser"))
+
 
 //查询全部新闻
 app.get("/queryAllNews",loader.get("/queryAllNews"));
@@ -112,6 +119,10 @@ app.get("/queryNewSuggest",loader.get("/queryNewSuggest"));
 app.get("/queryAllSuggest",loader.get("/queryAllSuggest"));
 //更新评论notice
 app.get("/updateNoticeById",loader.get("/updateNoticeById"));
+//根据page查询
+app.get("/api/querySuggestByPage",loader.get("/querySuggestByPage"));
+//删除评论
+app.get("/deleteSuggestById",loader.get("/deleteSuggestById"));
 
 //滚动通知
 
@@ -142,6 +153,8 @@ app.get("/deleteAllPublic",loader.get("/deleteAllPublic"));
 app.get("/queryRandomCode",loader.get("/queryRandomCode"));
 //查询登录
 app.get("/queryUser",loader.get("/queryUser"));
+//修改密码
+app.get("/updatePasswordById",loader.get("/updatePasswordById"));
 
 
 

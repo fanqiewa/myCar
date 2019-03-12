@@ -211,11 +211,101 @@
 
         }
 
+        //查询用户图像
+        function queryUser() {
+            var arr = document.cookie.split(";");
+            var username = "";
+            var password = "";
+            for ( var i = 0; i < arr.length; i++) {
+                var newArr = arr[i].split("=");
 
+                if (newArr[0].trim() == "username"){
+                    username = newArr[1];
+                }
+                if(newArr[0].trim() == "password") {
+                    password = newArr[1];
+                }
+            }
+            $.ajax({
+                url: "/queryUser?username=" + username + "&password=" + password,
+                type: "get",
+                success: function (data) {
+                    var dataList = JSON.parse(data).data;
+                    renderUser(dataList);
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
+        function renderUser(dataList) {
+            var src = dataList[0].image.split("++")[0];
+            var originPassword =  dataList[0].password;
+            var str = "<a href=\"#\" id=\"userToggle\" data-toggle=\"dropdown\">\n" +
+                "                            <img src=\""+ src +"\" alt=\"\" class=\"img-circle inline-block user-profile-pic\">\n" +
+                "                            <div class=\"user-detail inline-block\">\n" +
+                "                                "+ dataList[0].username +"\n" +
+                "                                <i class=\"fa fa-angle-down\"></i>\n" +
+                "                            </div>\n" +
+                "                        </a>\n" +
+                "                        <div class=\"panel border dropdown-menu user-panel\">\n" +
+                "                            <div class=\"panel-body paddingTB-sm\">\n" +
+                "                                <ul>\n" +
+                "                                    <li id='changePassword'>\n" +
+                "                                        <a href=\"javascript:;\">\n" +
+                "                                            <i class=\"fa fa-edit fa-lg\"></i><span class=\"m-left-xs\">修改密码</span>\n" +
+                "                                        </a>\n" +
+                "                                    </li>\n" +
+                "                                    <li>\n" +
+                "                                        <a href=\"./login.html\">\n" +
+                "                                            <i class=\"fa fa-power-off fa-lg\"></i><span class=\"m-left-xs\">Sign out</span>\n" +
+                "                                        </a>\n" +
+                "                                    </li>\n" +
+                "                                </ul>\n" +
+                "                            </div>\n" +
+                "                        </div>";
+            $("#admin").append(str);
+            $("#changePassword").on("click",function () {
+                layer.prompt({
+                    formType: 1,
+                    title: '请输入原始密码'
+                }, function(value, index, elem){
+                    var password = value;
+                    if(password != originPassword) {
+                        layer.msg("原始密码错误！请重新输入！")
+                    } else {
+                        layer.close(index)
+                        layer.prompt({
+                            formType: 1,
+                            title: "请输入新密码"
+                        },function (value,index,elem) {
+                            var newPassword = value;
+                            var id = dataList[0].id;
+                            $.ajax({
+                                url:"/updatePasswordById?id=" + id + "&password=" + newPassword,
+                                type: "get",
+                                dataType: "JSON",
+                                success: function (data) {
+                                    layer.msg(data.msg + ",请重新登录！",{icon:6});
+                                    setTimeout(function () {
+                                        window.location.href = "./login.html"
+                                    },1000)
+                                },
+                                error: function (error) {
+                                    console.log(error)
+                                }
+                            })
+                        })
+                    }
+
+                });
+            })
+        }
 
 
         queryAllSuggest();
         queryAllNewSuggest();
         queryNewPublic();
+        queryUser();
     })
 }(layui))

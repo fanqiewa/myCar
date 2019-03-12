@@ -27,12 +27,25 @@ function querySuggestById(id,success) {
     suggestDao.querySuggestById(id,success)
 }
 
-//
+//根据page查询
+function querySuggestByPage(page, pageSize,success) {
+    suggestDao.querySuggestByPage(page,pageSize,success)
+}
+
+
+//根据id删除留言
+
+function deleteSuggestById(id,success) {
+    suggestDao.deleteSuggestById(id,success)
+}
+
 
 module.exports = {
     "insertSuggest": insertSuggest,
     "queryNewSuggest" : queryNewSuggest,
     "queryAllSuggest" : queryAllSuggest,
     "updateNoticeById" : updateNoticeById,
-    "querySuggestById" : querySuggestById
+    "querySuggestById" : querySuggestById,
+    "querySuggestByPage" : querySuggestByPage,
+    "deleteSuggestById" : deleteSuggestById
 }
