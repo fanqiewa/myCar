@@ -44,7 +44,10 @@
                         data[i].news_content +=  "...";
                     }
                 }
-               for(var i = 0; i < data.length - 2 ; i ++) {
+               for(var i = 0; i < data.length; i ++) {
+                   if(i == 2) {
+                       break;
+                   }
                     var time =  timestampToTime(data[i].news_ctime);
                    str_content += " <div class='artical_info\'>\n\
                                                <div class=\"post_head clearfix\">\n\
@@ -76,6 +79,9 @@
                                            </div>";
                 }
                for(var i = 2; i < data.length; i ++) {
+                        if(i == 4) {
+                            break;
+                        }
                        var time =  timestampToTime(data[i].news_ctime);
                        str_right += " <div class='artical_info\'>\n\
                                                <div class=\"post_head clearfix\">\n\

@@ -397,19 +397,19 @@
                     <legend>产品科技的添加</legend>
                     <div style="padding: 20px;">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">内饰名称</label>
+                            <label class="layui-form-label">科技名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="username"  placeholder="内饰名称" autocomplete="off" class="layui-input" id="technology_title">
+                                <input type="text" name="username"  placeholder="科技名称" autocomplete="off" class="layui-input" id="technology_title">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">内饰图片</label>
+                            <label class="layui-form-label">科技图片</label>
                             <img class="layui-upload-img" id="demo3">
                             <button type="button" class="layui-btn" id="test3" onclick="selectFileTechnology()"><i class="layui-icon">&#xe67c;</i>上传图片</button>
                             <input type="file" name="technology_image" id="technology_image" style="display:none" onchange="changepicTechnology(this)" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                         </div>
                         <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">内饰介绍</label>
+                            <label class="layui-form-label">科技介绍</label>
                             <div class="layui-input-block">
                                 <textarea placeholder="请输入内容" class="layui-textarea" id="editorTechnology"></textarea>
                             </div>
@@ -577,6 +577,72 @@
         $("#editorFacade").val("");
     }
 </script>
+
+<!--2-->
+<script>
+    var layer = layui.layer;
+    function selectFileDecorate() {
+        $("#decorate_image").trigger("click");
+    }
+    function changepicDecorate() {
+        var reads= new FileReader();
+        f=document.getElementById('decorate_image').files[0];
+        reads.readAsDataURL(f);
+        reads.onload=function (e) {
+            document.getElementById('demo2').src=this.result;
+        };
+    }
+    function sumbitDecorate() {
+        var category_name = $("#select1 option:selected").text();
+        var product_version = $("#select2 option:selected").text();
+        var decorate_title = $("#decorate_title").val();
+        var decorate_image = document.getElementById("decorate_image").files[0];
+        var content = $("#editorDecorate").val();
+        var form = new FormData();
+        var imageType = /^image\//;
+        if(decorate_title == "" || content == "") {
+            layer.msg("technology_title or 内容不能为空！");
+            return;
+        }
+        if(decorate_image == undefined) {
+            layer.msg("请添加图片！");
+            return;
+        }
+        if(!imageType.test(decorate_image.type)) {//判断是否为图片
+            layer.msg("请选择图片类型文件！！！")
+            return;
+        }
+        form.append("decorate_image",decorate_image);
+        form.append("content",content);
+        $.ajax({
+            url:"/addDecorate?category_name=" + category_name + "&product_version=" + product_version + "&decorate_title=" + decorate_title,
+            type:"POST",
+            data:form,
+            processData:false,
+            contentType: false,
+            success:function (resp) {
+                if(JSON.parse(resp).msg == "该车型不存在，请重新选择") {
+                    layer.msg(JSON.parse(resp).msg, {icon: 5});
+                } else if(JSON.parse(resp).msg == "添加成功") {
+                    layer.msg("添加成功！", {icon: 1});
+                }
+                $("#technology_title").val("");
+                $("#editorTechnology").val("");
+            },
+            error:function (resp) {
+                console.log(resp)
+            }
+        })
+
+    }
+    function resetDecorate() {
+        layer.msg("重置成功！");
+        $("#technology_title").val("");
+        $("#editorTechnology").val("");
+    }
+</script>
+
+<!--3-->
 <script>
     function selectFileTechnology() {
         $("#technology_image").trigger("click");
@@ -638,6 +704,7 @@
         $("#editorTechnology").val("");
     }
 </script>
+
 <script src="js/base_ajax.js"></script>
 </body>
 </html>

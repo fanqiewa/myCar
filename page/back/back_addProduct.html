@@ -493,7 +493,7 @@
                 if(JSON.parse(resp).msg == "该车型已存在,请重新选择！") {
                     layer.msg(JSON.parse(resp).msg, {icon: 5});
                 } else if(JSON.parse(resp).msg == "添加成功"){
-                    layer.msg("以成功添加一条数据！", {icon: 1});
+                    layer.msg("已成功添加一条数据！", {icon: 1});
                 }
                 $("#product_describe").val("");
                 $("#editor").val("");
