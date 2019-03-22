@@ -1,0 +1,128 @@
+:root{
+    --color_1: #fff;
+    --main-color: #1dd1a1;
+}
+.boxTwo{
+    font-family: 'Niramit', sans-serif;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.boxTwo:before,
+.boxTwo:after,
+.boxTwo-content:before,
+.boxTwo-content:after{
+    content: '';
+    background: linear-gradient(transparent,rgba(0,0,0,0.9));
+    height: 100%;
+    width: 25%;
+    transform: translateY(-100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    transition: all 0.3s;
+}
+.boxTwo:hover:before,
+.boxTwo:hover:after,
+.boxTwo:hover .boxTwo-content:before,
+.boxTwo:hover .boxTwo-content:after{
+    transform: translateY(0);
+}
+.boxTwo:after{ left: 25%; }
+.boxTwo .boxTwo-content:before{ left: 50%; }
+.boxTwo .boxTwo-content:after{ left: 75%; }
+.boxTwo:hover:before{ transition-delay: 0.225s; }
+.boxTwo:hover:after{ transition-delay: 0.075s; }
+.boxTwo:hover .boxTwo-content:before{ transition-delay: 0.15s; }
+.boxTwo:hover .boxTwo-content:after{ transition-delay: 0s; }
+.boxTwo img{
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease 0s;
+}
+.boxTwo:hover img{ filter: grayscale(100%); }
+.boxTwo .boxTwo-content{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.2s;
+}
+.content{
+    width: 100%;
+    padding: 7px 0;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    z-index: 2;
+    transition: all 0.3s ease 0.1s;
+}
+.boxTwo:hover .content{
+    opacity: 1;
+    bottom: 5px;
+}
+.boxTwo .title{
+    color:#fff;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+.boxTwo .post{
+    color: var(--main-color);
+    font-size: 16px;
+    font-style: italic;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+.boxTwo .icon{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 15px;
+    right: -10px;
+    z-index: 2;
+    transition: all 0.5s ease 0.3s;
+}
+.boxTwo .icon li{
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+    transition: all 400ms;
+}
+.boxTwo:hover .icon li{
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+.boxTwo .icon li a{
+    color: var(--color_1);
+    background-color: var(--main-color);
+    font-size: 20px;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+}
+.boxTwo .icon li a:hover{
+    text-decoration: none;
+    color: var(--main-color);
+    background-color: var(--color_1);
+    border-radius: 0 20px 0 20px;
+}
+@media only screen and (max-width:990px){
+    .boxTwo{ margin-bottom: 30px; }
+}
+@media only screen and (max-width:479px){
+    .boxTwo .title{ font-size: 20px; }
+}

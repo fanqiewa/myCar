@@ -116,7 +116,7 @@ app.post("/addSuggest",loader.get("/addSuggest"));
 //查询新的评论
 app.get("/queryNewSuggest",loader.get("/queryNewSuggest"));
 //查询所有评论
-app.get("/queryAllSuggest",loader.get("/queryAllSuggest"));
+app.get("/api/queryAllSuggest",loader.get("/queryAllSuggest"));
 //更新评论notice
 app.get("/updateNoticeById",loader.get("/updateNoticeById"));
 //根据page查询

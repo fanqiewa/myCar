@@ -601,7 +601,7 @@
         var form = new FormData();
         var imageType = /^image\//;
         if(decorate_title == "" || content == "") {
-            layer.msg("technology_title or 内容不能为空！");
+            layer.msg("decorate_title or 内容不能为空！");
             return;
         }
         if(decorate_image == undefined) {
@@ -626,8 +626,8 @@
                 } else if(JSON.parse(resp).msg == "添加成功") {
                     layer.msg("添加成功！", {icon: 1});
                 }
-                $("#technology_title").val("");
-                $("#editorTechnology").val("");
+                $("#decorate_title").val("");
+                $("#editorDecorate").val("");
             },
             error:function (resp) {
                 console.log(resp)
@@ -637,8 +637,8 @@
     }
     function resetDecorate() {
         layer.msg("重置成功！");
-        $("#technology_title").val("");
-        $("#editorTechnology").val("");
+        $("#decorate_title").val("");
+        $("#editorDecorate").val("");
     }
 </script>
 

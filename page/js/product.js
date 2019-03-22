@@ -100,13 +100,27 @@
         var str = "";
         var len = dataList.length;
         for(var i = 0; i < len; i ++) {
-            str += " <div class=\"col-md-4 facade_img\">\n" +
-                "                <img src=\"../"+ dataList[i].facade_image +"\" alt=\"\">\n" +
-                "                <div class=\"facade_text\">\n" +
-                "                    <h4>"+ dataList[i].facade_title +"</h4>\n" +
-                "                    <span>"+ dataList[i].facade_introduction +"</span>\n" +
-                "                </div>\n" +
-                "            </div>"
+            // str += " <div class=\"col-md-4 facade_img\">\n" +
+            //     "                <img src=\"../"+ dataList[i].facade_image +"\" alt=\"\">\n" +
+            //     "                <div class=\"facade_text\">\n" +
+            //     "                    <h4>"+ dataList[i].facade_title +"</h4>\n" +
+            //     "                    <span>"+ dataList[i].facade_introduction +"</span>\n" +
+            //     "                </div>\n" +
+            //     "            </div>"
+            str += "<div class=\"col-md-4 col-sm-6\">\n" +
+                "\t\t\t\t<div class=\"box\">\n" +
+                "\t\t\t\t\t<img src=\"../"+ dataList[i].facade_image +"\" alt=\"\">\n" +
+                "\t\t\t\t\t<div class=\"box-content\">\n" +
+                "\t\t\t\t\t\t<h3 class=\"title\">"+ dataList[i].facade_title +"</h3>\n" +
+                "\t\t\t\t\t\t<span class=\"post\">welcome</span>\n" +
+                "\t\t\t\t\t</div>\n" +
+                "\t\t\t\t\t<ul class=\"icon\">\n" +
+                "\t\t\t\t\t\t<li><a href=\"javascript:;\"><i class=\"fa fa-search\"></i></a></li>\n" +
+                "\t\t\t\t\t\t<li><a href=\"javascript:;\"><i class=\"fa fa-link\"></i></a></li>\n" +
+                "\t\t\t\t\t</ul>\n" +
+                "\t\t\t\t</div><span>"+ dataList[i].facade_introduction +"</span>\n" +
+                "\t\t\t</div>"
+
         }
         $(".facade_top").append(str);
     };
@@ -114,13 +128,28 @@
         var str = "";
         var len = dataList.length;
         for(var i = 0; i < len; i ++) {
-            str += " <div class=\"col-md-4 decorate_img\">\n" +
-                "                <img src=\"../"+ dataList[i].decorate_image +"\" alt=\"\">\n" +
-                "                <div class=\"decorate_text\">\n" +
-                "                    <h4>"+ dataList[i].decorate_title +"</h4>\n" +
-                "                    <span>"+ dataList[i].decorate_introduction +"</span>\n" +
-                "                </div>\n" +
-                "            </div>"
+            // str += " <div class=\"col-md-4 decorate_img\">\n" +
+            //     "                <img src=\"../"+ dataList[i].decorate_image +"\" alt=\"\">\n" +
+            //     "                <div class=\"decorate_text\">\n" +
+            //     "                    <h4>"+ dataList[i].decorate_title +"</h4>\n" +
+            //     "                    <span>"+ dataList[i].decorate_introduction +"</span>\n" +
+            //     "                </div>\n" +
+            //     "            </div>"
+            str += "<div class=\"col-md-4 col-sm-6\">\n" +
+                "\t\t\t\t<div class=\"boxTwo\">\n" +
+                "\t\t\t\t\t<img src=\"../"+ dataList[i].decorate_image + "\" alt=\"\">\n" +
+                "\t\t\t\t\t<div class=\"boxTwo-content\">\n" +
+                "\t\t\t\t\t\t<div class=\"content\">\n" +
+                "\t\t\t\t\t\t\t<span class=\"post\">"+ dataList[i].decorate_title +"</span></span>\n" +
+                "\t\t\t\t\t\t\t<h3 class=\"title\">Kristina</h3>\n" +
+                "\t\t\t\t\t\t</div>\n" +
+                "\t\t\t\t\t\t<ul class=\"icon\">\n" +
+                "\t\t\t\t\t\t\t<li><a href=\"#\"><i class=\"fa fa-search\"></i></a></li>\n" +
+                "\t\t\t\t\t\t\t<li><a href=\"#\"><i class=\"fa fa-link\"></i></a></li>\n" +
+                "\t\t\t\t\t\t</ul>\n" +
+                "\t\t\t\t\t</div>\n" +
+                "\t\t\t\t</div><span>"+ dataList[i].decorate_introduction +"</span>\n" +
+                "\t\t\t</div>"
         }
         $(".decorate_top").append(str);
     };

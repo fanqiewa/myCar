@@ -67,7 +67,7 @@
 }
 #facade h3 {
     font-size: 2em;
-    color: #333;
+    /*color: #333;*/
     margin-top: 20px;
     font-family: 'Ubuntu-Medium';
 }
@@ -103,7 +103,7 @@
 }
 #decorate h3 {
     font-size: 2em;
-    color: #333;
+    /*color: #333;*/
     margin-top: 20px;
     font-family: 'Ubuntu-Medium';
 }

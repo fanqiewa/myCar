@@ -67,11 +67,15 @@
         //查询全部留言
         function queryAllSuggest() {
             $.ajax({
-                url:"/queryAllSuggest",
+                url:"/api/queryAllSuggest",
                 type:"get",
                 success: function (data) {
                     var dataList = JSON.parse(data).data;
-                    renderAllSuggest(dataList);
+                    if(JSON.parse(data).msg == "Fail") {
+                        window.location.href = "login.html"
+                    }else {
+                        renderAllSuggest(dataList);
+                    }
                 },
                 error: function (error) {
                     console.log(error)
@@ -150,7 +154,6 @@
                         (function (j) {
                             $(liList[j]).on("click",function (e) {
                                 var id = $(this).attr("data-p");//获取id
-                                console.log(id)
                                 var _self = this;
                                 $.ajax({
                                     url:"/updateNoticePublic?id=" + id,
@@ -239,6 +242,9 @@
             })
         }
         function renderUser(dataList) {
+            if(dataList.length == 0) {
+                return;
+            }
             var src = dataList[0].image.split("++")[0];
             var originPassword =  dataList[0].password;
             var str = "<a href=\"#\" id=\"userToggle\" data-toggle=\"dropdown\">\n" +

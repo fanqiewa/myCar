@@ -180,7 +180,7 @@
                 var send_email = $("#send_email").val();
                 var send_message = $("#message").val();
                 if(send_name == "" ||send_email == "" || send_message =="" ) {
-                    alert("名字或邮箱或评论内容不能为空！请重新输入！");
+                    layer.msg("名字或邮箱或评论内容不能为空！请重新输入！");
                     return;
                 }
                 var realemail = checkemail(send_email);
@@ -190,7 +190,7 @@
                         url:"/addSuggest?name=" + send_name + "&email=" + realemail + "&comment=" + send_message,
                         success: function (data) {
                             var dataList = JSON.parse(data);
-                            alert(dataList.msg);
+                            layer.msg("投诉建议成功！非常感谢您的建议！",{icon:6});
                             $("#send_name").val("");
                             $("#send_email").val("");
                             $("#message").val("");
