@@ -11,8 +11,7 @@
                     pageCount:parseInt((dataList.length + size) / size),
                     current:1,
                     backFn:function(p){
-                        var page = p - 1;
-                        requestNewsByPage(page,size);
+                        requestNewsByPage(p,size);
                     }
                 });
                 renderNews(dataList);
@@ -215,7 +214,7 @@
         var args = $.extend({
             pageCount: 5,
             current: 1,
-            backFn: function () { }
+            backFn: function () {}
         }, options);
         init(this, args)
     }

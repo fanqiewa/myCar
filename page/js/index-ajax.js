@@ -138,7 +138,7 @@
                         data[i].news_content +=  "...";
                     }
                 }
-                var str = "<a href=\"#\" class=\"post_pic\">\n" +
+                var str = "<a href=\"javascript:;\" class=\"post_pic\">\n" +
                     "                        <img src=\"" + data[0].news_image + "\" alt=\"\">\n" +
                     "                    </a>\n" +
                     "                    <div class=\"artical_info\">\n" +
@@ -184,6 +184,10 @@
                     return;
                 }
                 var realemail = checkemail(send_email);
+                if(send_message.length > 256) {
+                    layer.msg("您的投诉内容有点多，奴家承受不住了！",{icon:5});
+                    return;
+                }
                 if(realemail) {
                     $.ajax({
                         type:"post",

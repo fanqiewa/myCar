@@ -84,12 +84,12 @@ function querySuggestById(id,success) {
 //根据Page查询全部留言
 function querySuggestByPage(page,pageSize,success) {
     if(page == 1) {
-        page = page;
+        page = page - 1;
     } else {
         page = page * pageSize - pageSize;
     }
     var querySql = "select * from suggest order by id desc limit ?, ?";
-    var params = [page-1,pageSize];
+    var params = [page,pageSize];
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(querySql,params,function (error,result) {
